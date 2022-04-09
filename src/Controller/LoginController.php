@@ -22,7 +22,6 @@ class LoginController extends AbstractController
     
      #[Route('/inicio', name: 'inicio')]
     public function indexInicio(): Response {
-       
         return $this->render('index.html.twig');
     }
 }
