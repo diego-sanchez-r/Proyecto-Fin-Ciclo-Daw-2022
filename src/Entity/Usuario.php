@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsuarioRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -23,6 +25,32 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private $password;
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    private $nombre;
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    private $apellidos;
+    
+     #[ORM\Column(type: 'string', length: 50)]
+    private $telefono;
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    private $imagen;
+    
+    #[ORM\Column(type: 'string', length: 10)]
+    private $codigo_postal;
+    
+    #[ORM\Column(type: 'string', length: 250)]
+    private $rol_usuario;
+
+    #[ORM\OneToMany(mappedBy: 'usuario', targetEntity: incidencia::class)]
+    private $incidencia;
+
+    public function __construct()
+    {
+        $this->incidencia = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,12 +113,91 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
+    
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    public function getApellidos() {
+        return $this->apellidos;
+    }
+
+    public function getTelefono() {
+        return $this->telefono;
+    }
+
+    public function getImagen() {
+        return $this->imagen;
+    }
+
+    public function getCodigo_postal() {
+        return $this->codigo_postal;
+    }
+
+    public function getRol_usuario() {
+        return $this->rol_usuario;
+    }
+
+    public function setNombre($nombre): void {
+        $this->nombre = $nombre;
+    }
+
+    public function setApellidos($apellidos): void {
+        $this->apellidos = $apellidos;
+    }
+
+    public function setTelefono($telefono): void {
+        $this->telefono = $telefono;
+    }
+
+    public function setImagen($imagen): void {
+        $this->imagen = $imagen;
+    }
+
+    public function setCodigo_postal($codigo_postal): void {
+        $this->codigo_postal = $codigo_postal;
+    }
+
+    public function setRol_usuario($rol_usuario): void {
+        $this->rol_usuario = $rol_usuario;
+    }
+
+        /**
      * @see UserInterface
      */
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, incidencia>
+     */
+    public function getIncidencia(): Collection
+    {
+        return $this->incidencia;
+    }
+
+    public function addIncidencium(incidencia $incidencium): self
+    {
+        if (!$this->incidencia->contains($incidencium)) {
+            $this->incidencia[] = $incidencium;
+            $incidencium->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIncidencium(incidencia $incidencium): self
+    {
+        if ($this->incidencia->removeElement($incidencium)) {
+            // set the owning side to null (unless already changed)
+            if ($incidencium->getUsuario() === $this) {
+                $incidencium->setUsuario(null);
+            }
+        }
+
+        return $this;
     }
 }

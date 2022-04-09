@@ -13,14 +13,14 @@ class Comentario
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $id_incidencia;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $texto;
 
     #[ORM\Column(type: 'datetime')]
     private $fecha_creacion;
+
+    #[ORM\ManyToOne(targetEntity: incidencia::class, inversedBy: 'comentarios')]
+    private $incidencia;
 
     public function getId(): ?int
     {
@@ -59,6 +59,18 @@ class Comentario
     public function setFechaCreacion(\DateTimeInterface $fecha_creacion): self
     {
         $this->fecha_creacion = $fecha_creacion;
+
+        return $this;
+    }
+
+    public function getIncidencia(): ?incidencia
+    {
+        return $this->incidencia;
+    }
+
+    public function setIncidencia(?incidencia $incidencia): self
+    {
+        $this->incidencia = $incidencia;
 
         return $this;
     }

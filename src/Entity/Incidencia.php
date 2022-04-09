@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\IncidenciaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: IncidenciaRepository::class)]
@@ -19,9 +21,6 @@ class Incidencia
     #[ORM\Column(type: 'string', length: 50)]
     private $nivel_gravedad;
 
-    #[ORM\Column(type: 'integer')]
-    private $tipo_averia;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $imagen;
 
@@ -37,8 +36,21 @@ class Incidencia
     #[ORM\Column(type: 'string', length: 10)]
     private $codigo_postal;
 
-    #[ORM\Column(type: 'integer')]
-    private $id_usuario;
+    #[ORM\ManyToOne(targetEntity: Usuario::class, inversedBy: 'incidencia')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $usuario;
+
+    #[ORM\OneToMany(mappedBy: 'incidencia', targetEntity: Comentario::class)]
+    private $comentarios;
+
+    #[ORM\OneToOne(targetEntity: TipoAveria::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $averia;
+
+    public function __construct()
+    {
+        $this->comentarios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -149,6 +161,60 @@ class Incidencia
     public function setIdUsuario(int $id_usuario): self
     {
         $this->id_usuario = $id_usuario;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comentario>
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setIncidencia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->removeElement($comentario)) {
+            // set the owning side to null (unless already changed)
+            if ($comentario->getIncidencia() === $this) {
+                $comentario->setIncidencia(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAveria(): ?TipoAveria
+    {
+        return $this->averia;
+    }
+
+    public function setAveria(TipoAveria $averia): self
+    {
+        $this->averia = $averia;
 
         return $this;
     }
