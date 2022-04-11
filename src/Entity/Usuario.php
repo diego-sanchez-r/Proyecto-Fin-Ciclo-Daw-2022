@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\UsuarioRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -41,16 +41,14 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     private $imagen;
     
     #[ORM\Column(type: 'string', length: 10)]
-    private $codigo_postal;
+    private $codigo;
     
-    #[ORM\Column(type: 'string', length: 250)]
+    #[ORM\Column(type: 'string', length: 250,nullable: true)]
     private $rol_usuario;
 
     #[ORM\OneToMany(mappedBy: 'usuario', targetEntity: Incidencia::class)]
     private $incidencia;
 
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
 
     public function __construct()
     {
@@ -135,10 +133,6 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->imagen;
     }
 
-    public function getCodigo_postal() {
-        return $this->codigo_postal;
-    }
-
     public function getRol_usuario() {
         return $this->rol_usuario;
     }
@@ -159,15 +153,22 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         $this->imagen = $imagen;
     }
 
-    public function setCodigo_postal($codigo_postal): void {
-        $this->codigo_postal = $codigo_postal;
-    }
-
+   
     public function setRol_usuario($rol_usuario): void {
         $this->rol_usuario = $rol_usuario;
     }
+    
+    public function getCodigo() {
+        return $this->codigo;
+    }
 
-        /**
+    public function setCodigo($codigo): void {
+        $this->codigo = $codigo;
+    }
+
+    
+            
+            /**
      * @see UserInterface
      */
     public function eraseCredentials()
@@ -206,15 +207,5 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
-    }
+    
 }
