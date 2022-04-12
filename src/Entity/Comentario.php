@@ -17,7 +17,7 @@ class Comentario
     private $texto;
 
     #[ORM\Column(type: 'datetime')]
-    private $fecha_creacion;
+    private $fechaCreacion;
 
     #[ORM\ManyToOne(targetEntity: incidencia::class, inversedBy: 'comentarios')]
     private $incidencia;
@@ -51,18 +51,15 @@ class Comentario
         return $this;
     }
 
-    public function getFechaCreacion(): ?\DateTimeInterface
-    {
-        return $this->fecha_creacion;
+    public function getFechaCreacion() {
+        return $this->fechaCreacion;
     }
 
-    public function setFechaCreacion(\DateTimeInterface $fecha_creacion): self
-    {
-        $this->fecha_creacion = $fecha_creacion;
-
-        return $this;
+    public function setFechaCreacion($fechaCreacion): void {
+        $this->fechaCreacion = $fechaCreacion;
     }
 
+    
     public function getIncidencia(): ?incidencia
     {
         return $this->incidencia;

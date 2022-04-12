@@ -16,10 +16,16 @@ class Incidencia
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    private $titulo;
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    private $estado;
+    
+    #[ORM\Column(type: 'string', length: 255)]
     private $descripcion;
 
     #[ORM\Column(type: 'string', length: 50)]
-    private $nivel_gravedad;
+    private $nivelGravedad;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $imagen;
@@ -31,10 +37,10 @@ class Incidencia
     private $longitud;
 
     #[ORM\Column(type: 'datetime')]
-    private $fecha_cracion;
+    private $fechaCreacion;
 
     #[ORM\Column(type: 'string', length: 10)]
-    private $codigo_postal;
+    private $codigoPostal;
 
     #[ORM\ManyToOne(targetEntity: Usuario::class, inversedBy: 'incidencia')]
     #[ORM\JoinColumn(nullable: false)]
@@ -65,18 +71,6 @@ class Incidencia
     public function setDescripcion(string $descripcion): self
     {
         $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    public function getNivelGravedad(): ?string
-    {
-        return $this->nivel_gravedad;
-    }
-
-    public function setNivelGravedad(string $nivel_gravedad): self
-    {
-        $this->nivel_gravedad = $nivel_gravedad;
 
         return $this;
     }
@@ -129,30 +123,7 @@ class Incidencia
         return $this;
     }
 
-    public function getFechaCracion(): ?\DateTimeInterface
-    {
-        return $this->fecha_cracion;
-    }
-
-    public function setFechaCracion(\DateTimeInterface $fecha_cracion): self
-    {
-        $this->fecha_cracion = $fecha_cracion;
-
-        return $this;
-    }
-
-    public function getCodigoPostal(): ?string
-    {
-        return $this->codigo_postal;
-    }
-
-    public function setCodigoPostal(string $codigo_postal): self
-    {
-        $this->codigo_postal = $codigo_postal;
-
-        return $this;
-    }
-
+    
     public function getIdUsuario(): ?int
     {
         return $this->id_usuario;
@@ -177,6 +148,47 @@ class Incidencia
         return $this;
     }
 
+    public function getTitulo() {
+        return $this->titulo;
+    }
+
+    public function getEstado() {
+        return $this->estado;
+    }
+
+    public function getNivelGravedad() {
+        return $this->nivelGravedad;
+    }
+
+    public function getFechaCreacion() {
+        return $this->fechaCreacion;
+    }
+
+    public function getCodigoPostal() {
+        return $this->codigoPostal;
+    }
+
+    public function setTitulo($titulo): void {
+        $this->titulo = $titulo;
+    }
+
+    public function setEstado($estado): void {
+        $this->estado = $estado;
+    }
+
+    public function setNivelGravedad($nivelGravedad): void {
+        $this->nivelGravedad = $nivelGravedad;
+    }
+
+    public function setFechaCreacion($fechaCreacion): void {
+        $this->fechaCreacion = $fechaCreacion;
+    }
+
+    public function setCodigoPostal($codigoPostal): void {
+        $this->codigoPostal = $codigoPostal;
+    }
+
+        
     /**
      * @return Collection<int, Comentario>
      */

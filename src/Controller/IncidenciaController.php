@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Incidencia;
+use Symfony\Component\HttpFoundation\Request;
 
 class IncidenciaController extends AbstractController
 {
@@ -27,4 +28,32 @@ class IncidenciaController extends AbstractController
             'mis_incidencias' => $misIncidencia,
         ]);
     }
+    
+    
+    
+    /**
+     * @Route("/incidencia/{id<\d+>}",name="ver_incidencia")
+    */
+    public function ver(Incidencia $incidenciaver, Request $request, ManagerRegistry $doctrine): Response {
+        //Comprobar si el usuario esta logeado.
+            if($this->getUser() === null){
+                return $this->redirectToRoute("login");
+            }
+
+        $repositorio = $doctrine->getRepository(Incidencia::class);
+        $id = $request->get('id');
+        $incidenciaver = $repositorio->find($id);
+
+        return $this->render('incidencia/verDetallesIncidencia.html.twig', [
+            'incidenciaSeleccionada' => $incidenciaver,
+        ]);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

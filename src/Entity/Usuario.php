@@ -44,7 +44,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     private $codigo;
     
     #[ORM\Column(type: 'string', length: 250,nullable: true)]
-    private $rol_usuario;
+    private $rolUsuario;
 
     #[ORM\OneToMany(mappedBy: 'usuario', targetEntity: Incidencia::class)]
     private $incidencia;
@@ -133,9 +133,6 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->imagen;
     }
 
-    public function getRol_usuario() {
-        return $this->rol_usuario;
-    }
 
     public function setNombre($nombre): void {
         $this->nombre = $nombre;
@@ -153,10 +150,6 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         $this->imagen = $imagen;
     }
 
-   
-    public function setRol_usuario($rol_usuario): void {
-        $this->rol_usuario = $rol_usuario;
-    }
     
     public function getCodigo() {
         return $this->codigo;
@@ -166,8 +159,15 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         $this->codigo = $codigo;
     }
 
-    
-            
+    public function getRolUsuario() {
+        return $this->rolUsuario;
+    }
+
+    public function setRolUsuario($rolUsuario): void {
+        $this->rolUsuario = $rolUsuario;
+    }
+
+                
             /**
      * @see UserInterface
      */

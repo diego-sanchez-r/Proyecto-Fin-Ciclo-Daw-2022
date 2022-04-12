@@ -9,20 +9,15 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Diego_Sanchez/OneDrive/Proyecto Fin de Ciclo Daw/Sy_ProyectoFinCicloIncidencias/src/Controller/IncidenciaController.php'|file_link(0) }}">src/Controller/IncidenciaController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Diego_Sanchez/OneDrive/Proyecto Fin de Ciclo Daw/Sy_ProyectoFinCicloIncidencias/templates/incidencia/index.html.twig'|file_link(0) }}">templates/incidencia/index.html.twig</a></code></li>
-    </ul>
-</div>
-        
+    <h1>Hello {{ controller_name }}! ✅</h1>        
     {% for incidencia in mis_incidencias %}
+        Incidencia: <a href="{{ path("ver_incidencia",{id:incidencia.id}) }}">{{ incidencia.descripcion }}</a>
         <p>{{incidencia.descripcion}}</p>
         <p>{{incidencia.averia.nombre}}</p>
+        <p>Comentarios</p>
         {% for comentario in incidencia.comentarios %}
             <p>{{comentario.texto}}</p>
         {%  endfor %}
     {%  endfor %}
+</div>
 {% endblock %}
