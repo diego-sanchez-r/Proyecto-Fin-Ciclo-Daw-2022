@@ -9,6 +9,11 @@
     <input type="text" id="username" name="_username" value="{{ last_username }}"/>
     <label for="password">Password:</label>
     <input type="password" id="password" name="_password"/>
+    <input type="hidden" name="_target_path" value="/inicio"/>
+     <label>
+        <input type="checkbox" name="_remember_me" checked/>
+        Recuerdame
+    </label>
     <button type="submit">login</button>
 </form>
     <a href="{{ path('app_register') }}"><button class="btn2" type="button">Registrarse</button></a>

@@ -1,4 +1,11 @@
 {# empty Twig template #}
+
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
 <section class="form-register">
     <p><u><b>WEB DE INCIDENCIAS</u></b></p> 
     <br>
@@ -6,3 +13,5 @@
     <br>
     <br>
 </section>
+<a href="{{ path('app_incidencia') }}"><button class="btn2" type="button">Incidencias</button></a>
+{% endblock %}
