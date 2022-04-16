@@ -33,7 +33,7 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Ingrese Correo Electronico ',
-                    'class' => 'controls'
+                    'class' => 'form-control'
                 )
             ])
             ->add('Password', PasswordType::class, [
@@ -53,7 +53,7 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Ingrese la Password ',
-                    'class' => 'controls'
+                    'class' => 'form-control'
                 )
             ])
             ->add("nombre", TextType::class, [
@@ -65,7 +65,7 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                'attr' => array(
                     'placeholder' => 'Ingrese Nombre ',
-                    'class' => 'controls'
+                    'class' => 'form-control'
                 )
             ])
             ->add("apellidos", TextType::class, [
@@ -77,7 +77,7 @@ class RegistrationFormType extends AbstractType
                'label' => false,
                'attr' => array(
                     'placeholder' => 'Ingrese Apellidos ',
-                    'class' => 'controls'
+                    'class' => 'form-control'
                 )
             ])
             ->add("telefono", TextType::class, [
@@ -89,7 +89,7 @@ class RegistrationFormType extends AbstractType
                'label' => false,
                'attr' => array(
                     'placeholder' => 'Ingrese Teléfono ',
-                    'class' => 'controls'
+                    'class' => 'form-control'
                 )
                ])
                ->add("codigo", TextType::class, [
@@ -101,7 +101,7 @@ class RegistrationFormType extends AbstractType
                'label' => false,
                'attr' => array(
                     'placeholder' => 'Ingrese Código Postal ',
-                    'class' => 'controls'
+                    'class' => 'form-control'
                 )
                ])
             ->add("imagen", FileType::class, [
@@ -120,8 +120,9 @@ class RegistrationFormType extends AbstractType
                 ],
                 
                 'attr' => array(
-                    'class' => 'controls'
-                )
+                    'class' => 'form-control'
+                ),
+                'label' => false,
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -133,11 +134,11 @@ class RegistrationFormType extends AbstractType
                 'attr' => array(
                     'class' => 'form-check-input'
                 ),
-                'label' => " Aceptar Terminos y Condiciones ",
+                'label' => " Aceptar Términos y Condiciones -",
             ])
                ->add('Registrar', SubmitType::class, [
                 'attr' => array(
-                    'class' => 'botons',
+                    'class' => 'btn btn-primary w-100',
                 )
                ])
                ;
