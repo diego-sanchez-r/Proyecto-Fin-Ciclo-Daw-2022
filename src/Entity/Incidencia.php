@@ -87,16 +87,12 @@ class Incidencia
         return $this;
     }
 
-    public function getImagen(): ?string
-    {
+  public function getImagen() {
         return $this->imagen;
     }
 
-    public function setImagen(string $imagen): self
-    {
+    public function setImagen($imagen): void {
         $this->imagen = $imagen;
-
-        return $this;
     }
 
     public function getLatitud(): ?string

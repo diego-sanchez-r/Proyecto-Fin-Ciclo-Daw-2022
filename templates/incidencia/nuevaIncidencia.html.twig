@@ -3,8 +3,8 @@
 {% block title %}Nueva Incidencia{% endblock %}
 
 {% block body %}
-<button onclick="findMe()">Añadir ubicación</button><br>
-<form action="{{ path("add_incidencia")}}" method="post" >
+
+{{ form_start(form_incidencia) }}
     <input type="text" name="titulo" placeholder="Titulo..." ><br>
     <textarea name="descripcion" placeholder="Descripción..."></textarea><br>
     <input type="text" name="codigo" placeholder="Código Postal..."><br>
@@ -15,7 +15,7 @@
         <option value="Imprescindible">Imprescindible</option>
     </select><br>
     <label for="myfile">Foto:</label>
-    <input type="file" name="imagen"><br>
+    {{ form_row(form_incidencia.imagen) }}
     <div id="mapa"></div><br>
     Latitud:<input type="text" name="latitud" id="lat" value=""><br>    
     Longitud:<input type="text" name="longitud" id="long" value=""><br>
@@ -24,7 +24,6 @@
         <option value="{{averia.id}}">{{averia.nombre}}</option>    
     {%  endfor %}
     </select><br>
-    <input type="submit" value="Añadir incidencia">
-</form>
+    {{ form_end(form_incidencia) }}
 {% endblock %}    
     
