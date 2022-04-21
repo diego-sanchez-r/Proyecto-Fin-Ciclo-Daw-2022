@@ -6,7 +6,7 @@
     <div class="container mt-5">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-8">
-                {{ form_start(form_incidencia) }}
+                {{ form_start(form_incidencia,{'attr': {'id': 'regForm'}}) }}
                     <h1 id="register">Nueva Incidencia</h1>
                     <div class="all-steps" id="all-steps"> <span class="step"><i class="fa fa-user"></i></span> <span class="step"><i class="fa fa-map-marker"></i></span> <span class="step"><i class="fa fa-shopping-bag"></i></span> <span class="step"><i class="fa fa-car"></i></span> <span class="step"><i class="fa fa-spotify"></i></span> <span class="step"><i class="fa fa-mobile-phone"></i></span> </div>
                     <div class="tab">
@@ -16,6 +16,7 @@
                     <div class="tab">
                         <h6>Ubicación:</h6>
                         <p><button type="button" class="btn btn-success" onclick="findMe()">Añadir Ubicación</button>
+                        <div id="mapa"></div>    
                         <h6>Escribe el código postal:</h6>
                         <p><input placeholder="Código Postal..." oninput="this.className = ''" name="codigo"></p>
                         <input type="text" name="latitud" id="lat" value="" oninput="this.className = ''">

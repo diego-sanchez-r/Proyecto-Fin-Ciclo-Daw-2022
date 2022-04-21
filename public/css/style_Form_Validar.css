@@ -6,12 +6,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 21-abr-2022, 19:30:16
     Author     : Diego_Sanchez
 */
-body {
-    background: #eee
-}
 
 #regForm {
-    background-color: #ffffff;
+    background-color: #DEE1E8;
     margin: 0px auto;
     font-family: Raleway;
     padding: 40px;
