@@ -1,0 +1,131 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21-abr-2022, 19:30:16
+    Author     : Diego_Sanchez
+*/
+body {
+    background: #eee
+}
+
+#regForm {
+    background-color: #ffffff;
+    margin: 0px auto;
+    font-family: Raleway;
+    padding: 40px;
+    border-radius: 10px
+}
+
+#register {
+    color: #929fba
+}
+
+h1 {
+    text-align: center
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+    border-radius: 10px;
+    -webkit-appearance: none
+}
+
+select {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+    border-radius: 10px;
+    -webkit-appearance: none
+}
+
+.tab input:focus {
+    border: 1px solid #929fba !important;
+    outline: none
+}
+
+input.invalid {
+    border: 1px solid #ff0101
+}
+
+select.invalid {
+    border: 1px solid #ff0101
+}
+
+.tab {
+    display: none
+}
+
+button {
+    background-color: #929fba;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer
+}
+
+button:hover {
+    opacity: 0.8
+}
+
+button:focus {
+    outline: none !important
+}
+
+#prevBtn {
+    background-color: #bbbbbb
+}
+
+.all-steps {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center
+}
+
+.step {
+    height: 40px;
+    width: 40px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: #929fba;
+    opacity: 0.5
+}
+
+.step.active {
+    opacity: 1
+}
+
+.step.finish {
+    color: #fff;
+    background: #929fba;
+    opacity: 1
+}
+
+.all-steps {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px
+}
+
+.thanks-message {
+    display: none
+}

@@ -79,14 +79,11 @@ class IncidenciaController extends AbstractController
                     ])
                 ],
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'oninput'=> 'this.className=""'
                 )
                 
             ])
-                 ->add('submit', SubmitType::class, array(
-                    'label' => 'Insertar Incidencia',
-                    'attr'  => array('class' => 'botons')
-                ))
                 ->getForm();
                 ;
                 $form->handleRequest($request);

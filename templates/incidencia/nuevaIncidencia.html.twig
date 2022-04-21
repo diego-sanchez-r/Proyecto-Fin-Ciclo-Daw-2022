@@ -2,28 +2,64 @@
 
 {% block title %}Nueva Incidencia{% endblock %}
 
-{% block body %}
-
-{{ form_start(form_incidencia) }}
-    <input type="text" name="titulo" placeholder="Titulo..." ><br>
-    <textarea name="descripcion" placeholder="Descripción..."></textarea><br>
-    <input type="text" name="codigo" placeholder="Código Postal..."><br>
-    Gravedad:
-    <select name="gravedad">
-        <option value="Leve">Leve</option>
-        <option value="Grave">Grave</option>
-        <option value="Imprescindible">Imprescindible</option>
-    </select><br>
-    <label for="myfile">Foto:</label>
-    {{ form_row(form_incidencia.imagen) }}
-    <div id="mapa"></div><br>
-    Latitud:<input type="text" name="latitud" id="lat" value=""><br>    
-    Longitud:<input type="text" name="longitud" id="long" value=""><br>
-    <select name="averia">
-    {% for averia in tiposDeAverias %}
-        <option value="{{averia.id}}">{{averia.nombre}}</option>    
-    {%  endfor %}
-    </select><br>
-    {{ form_end(form_incidencia) }}
+{% block body %}    
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                {{ form_start(form_incidencia) }}
+                    <h1 id="register">Nueva Incidencia</h1>
+                    <div class="all-steps" id="all-steps"> <span class="step"><i class="fa fa-user"></i></span> <span class="step"><i class="fa fa-map-marker"></i></span> <span class="step"><i class="fa fa-shopping-bag"></i></span> <span class="step"><i class="fa fa-car"></i></span> <span class="step"><i class="fa fa-spotify"></i></span> <span class="step"><i class="fa fa-mobile-phone"></i></span> </div>
+                    <div class="tab">
+                        <h6>Escribe el título:</h6>
+                        <p><input placeholder="Título..." oninput="this.className = ''" name="titulo"></p>
+                    </div>
+                    <div class="tab">
+                        <h6>Ubicación:</h6>
+                        <p><button type="button" class="btn btn-success" onclick="findMe()">Añadir Ubicación</button>
+                        <h6>Escribe el código postal:</h6>
+                        <p><input placeholder="Código Postal..." oninput="this.className = ''" name="codigo"></p>
+                        <input type="text" name="latitud" id="lat" value="" oninput="this.className = ''">
+                        <input type="text" name="longitud" id="long" value="" oninput="this.className = ''">
+                    </p>
+                    </div>
+                    <div class="tab">
+                        <h6>Selecciona la gravedad:</h6>
+                        <p>
+                            <select name="gravedad" oninput="this.className = ''">
+                                <option value="Leve">Leve</option>
+                                <option value="Grave">Grave</option>
+                                <option value="Imprescindible">Imprescindible</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="tab">
+                        <h6>Selecciona el Tipo averia:</h6>
+                        <p>
+                            <select name="averia">
+                                {% for averia in tiposDeAverias %}
+                                    <option value="{{averia.id}}">{{averia.nombre}}</option>    
+                                {%  endfor %} 
+                            </select>
+                        </p>
+                    </div>
+                    <div class="tab">
+                        <h6>Subir imagen:</h6>
+                        <p>{{ form_row(form_incidencia.imagen) }}</p>
+                        
+                    </div>
+                    <div class="tab">
+                        <h6>Escribe la descripción:</h6>
+                        <p><input placeholder="Descripción..." oninput="this.className = ''" name="descripcion"></p>    
+                    </div>
+                    <div class="tab" id="text-message"><br>
+                        <input type="submit" name="Confirmar" class="btn btn-outline-primary">
+                    </div><br>
+                    <div style="overflow:auto;" id="nextprevious">
+                        <div style="float:right;"> <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fa fa-angle-double-left"></i></button> <button type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fa fa-angle-double-right"></i></button> </div>
+                    </div>
+                {{ form_end(form_incidencia) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}    
     
