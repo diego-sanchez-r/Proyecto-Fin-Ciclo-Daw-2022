@@ -3,21 +3,61 @@
 {% block title %}Hello IncidenciaController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>        
-    {% for incidencia in mis_incidencias %}
-        Incidencia: <a href="{{ path("ver_incidencia",{id:incidencia.id}) }}">{{ incidencia.descripcion }}</a>
-        <p>{{incidencia.descripcion}}</p>
-        <p>{{incidencia.averia.nombre}}</p>
-        <p>Comentarios</p>
-        {% for comentario in incidencia.comentarios %}
-            <p>{{comentario.texto}}</p>
-        {%  endfor %}
-    {%  endfor %}
+    
+    <style>
+        .contenedor {
+            padding: 60px 0;
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            text-align: center;
+        }
+    </style>
+<div class="contenedor">
+        <div class="row">
+            {% for incidencia in mis_incidencias %}
+                <div class="col">
+                    <div class="card" style="width: 15rem;">
+                        <img src="/imagenes/img_incidencias/{{incidencia.imagen}}" class="card-img-bottom w-100 rounded" alt="Imagen NO disponible">
+                        <div class="card-body">
+                          <h5 class="card-title"><a href="{{ path("ver_incidencia",{id:incidencia.id}) }}">{{ incidencia.titulo }}</a></h5>
+                          <p class="card-text">{{incidencia.descripcion}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Tipo Averia:{{incidencia.averia.nombre}}{{incidencia.id}}</li>
+                          <li class="list-group-item">Gravedad:{{incidencia.nivelGravedad}}</li>
+                          <li class="list-group-item">
+                              <a class="btn btn-primary" data-bs-toggle="offcanvas" 
+                              href="#offcanvasExample{{incidencia.id}}" role="button" aria-controls="offcanvasExample">
+                              <i class="fa-solid fa-message"></i> Ver Comentarios</a>
+                          </li>
+                        </ul>
+                        <div class="card-body">
+                            <label>Nuevo Comentario</label> 
+                              <div class="input-group">
+                                <input type="text" class="form-control"/>
+                                <button class="input-group-addon" type="submit">
+                                    <i class="fa-regular fa-share-from-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample{{incidencia.id}}" aria-labelledby="offcanvasExampleLabel">
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"><i class="fa-solid fa-message"></i> Comentarios</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <div>
+                            {% for comentario in incidencia.comentarios %} 
+                            <p>{{comentario.texto}}</p>
+                            {%  endfor %}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            {%  endfor %}
+        </div>     
 </div>
 {% endblock %}
