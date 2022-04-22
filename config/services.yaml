@@ -4,7 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    imagenes_ruta: '%kernel.project_dir%/public/imagenes'   
+    imagenes_ruta_usuarios: '%kernel.project_dir%/public/imagenes/img_usersgg'
+    imagenes_ruta_incidencia: '%kernel.project_dir%/public/imagenes/img_incidencias'
 services:
     # default configuration for services in *this* file
     _defaults:

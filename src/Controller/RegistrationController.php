@@ -43,7 +43,7 @@ class RegistrationController extends AbstractController
                 // Move the file to the directory where brochures are stored
                 try {
                     $brochureFile->move(
-                        $this->getParameter('imagenes_ruta'),
+                        $this->getParameter('imagenes_ruta_usuarios'),
                         $newFilename
                     );
                 } catch (FileException $e) {

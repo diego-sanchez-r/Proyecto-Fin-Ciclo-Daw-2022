@@ -31,12 +31,12 @@ body {
 }
 
 .img-2 {
-    background-image: url('/imagenes/img_web/img-1.jpg');
+    background-image: url('/imagenes/img_web/img-2.jpg');
     background-size: cover;
     background-position: center;
 }
 .img-3 {
-    background-image: url('/imagenes/img_web/img-1.jpg');
+    background-image: url('/imagenes/img_web/img-3.jpg');
     background-size: cover;
     background-position: center;
 }

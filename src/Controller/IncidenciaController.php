@@ -122,7 +122,7 @@ class IncidenciaController extends AbstractController
                 // Move the file to the directory where brochures are stored
                 try {
                     $brochureFile->move(
-                        $this->getParameter('imagenes_ruta'),
+                        $this->getParameter('imagenes_ruta_incidencia'),
                         $newFilename
                     );
                 } catch (FileException $e) {
