@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="/css/style_Menu.css" />    
+<header>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #DEE1E8 ;">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">InciConnect</a>
+              <button id="btnMenu" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                Menú
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <a href="" class="form-text text-muted text-decoration-none" style="font-size: medium;">
+                  <div id="foto_usuario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }});" ></div>
+                  <div class="nombreUsu" >{{ app.user.nombre }} {{ app.user.apellidos }}<br>
+                  <p style="font-size: xx-small;">Ver Perfil</p></a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </nav>
+        <section class="textos-header">
+            <h1>GESTIÓN DE INCIDENCIAS</h1>
+            <h3>Notifica cualquier tipo de problema,
+                incidencia, averia, queja, reclamación,
+                etc.</h3>
+        </section>
+          <img src="/imagenes/img_web/logo_sin_fondo.png" id="logo"/>
+        <div class="wave" style="height: 150px; overflow: hidden; z-index: 1 !important;">
+          <svg viewBox="0 0 500 150" preserveAspectRatio="none"style="height: 100%; width: 100%;">  
+                <path d="M0.00,49.98 C157.73,-46.86 360.32,179.13 501.41,79.45 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path>
+          </svg>
+        </div>
+    </header>
+{% endblock %}
