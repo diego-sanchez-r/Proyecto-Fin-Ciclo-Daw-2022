@@ -6,13 +6,123 @@
 {% block title %}Hello LoginController!{% endblock %}
 
 {% block body %}
-<section class="form-register">
-    <p><u><b>WEB DE INCIDENCIAS</u></b></p> 
-    <br>
-    <p>GESTIÓN DE INCIDENCIAS DE CLIENTES</P>
-    <br>
-    <br>
-</section>
-<a href="{{ path('app_incidencia') }}"><button class="btn2" type="button">Incidencias</button></a>
-<a href="{{ path('add_incidencia') }}"><button class="btn2" type="button">Nueva incidencia</button></a>
+    {%include 'menu.html.twig' %}
+    <link rel="stylesheet" href="/css/style_Inicio.css" />
+    <div class="contenedor">
+    <main>
+        <section class="portafolio">
+            <div class="contenedor">
+                <h2 class="titulo">Servicios</h2>
+                <div class="galeria-port">
+                    <div class="imagen-port">
+                        <img src="/imagenes/img_web/img1.jpg" alt="">
+                        <a href="{{ path("app_incidencia") }}"> 
+                        <div class="hover-galeria" title="Ver incidencias">
+                            <img src="/imagenes/img_web/icono1.png" alt="">
+                            <p>Ver Incidencias</p>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="/imagenes/img_web/img2.jpg" alt="">
+                        <a href="{{ path("add_incidencia") }}"> 
+                        <div class="hover-galeria" title="Nueva Incidencia">
+                            <img src="/imagenes/img_web/icono1.png" alt="">
+                            <p>Nueva Incidencia</p>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="/imagenes/img_web/img3.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="/imagenes/img_web/icono1.png" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="/imagenes/img_web/img1.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="/imagenes/img_web/icono1.png" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="/imagenes/img_web/img4.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="/imagenes/img_web/icono1.png" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="/imagenes/img_web/img5.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="img/icono1.png" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="/imagenes/img_web/img6.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="img/icono1.png" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="/imagenes/img_web/img7.jpg" alt="">
+                        <div class="hover-galeria">
+                            <img src="/imagenes/img_web/icono1.png" alt="">
+                            <p>Nuestro trabajo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <div class="explicacion">
+        <section class="contenedor sobre-nosotros">
+            <h2 class="titulo">¿Qué es la gestión de incidencias?</h2>
+            <div class="contenedor-sobre-nosotros">
+                <img src="/imagenes/img_web/ilustracion2.svg" alt="" class="imagen-about-us">
+                <div class="contenido-textos">
+                  <br>
+                    <h3><span>1</span>En que consiste</h3>
+                    <p>Muchas veces pasamos por la calle y vemos muchos desperfectos, 
+                      tales como, señales de tráfico pintadas, aceras en mal estado, 
+                      papeleras en el suelo; así como muchos ejemplos más, vamos pasando 
+                      cada día por el mismo lugar y vemos que esa incidencia sigue ahí sin 
+                      ninguna solución; y en algunos casos puede ser peligroso.</p>
+                    <h3><span>2</span>Finalidad</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt veniam eius aspernatur ad
+                        consequuntur aperiam minima sed dicta odit numquam sapiente quam eum, architecto animi pariatur,
+                        velit doloribus laboriosam ut.</p>
+                </div>
+            </div>
+        </section>
+      </div>
+        <br><br><br>
+        <section class="about-services">
+            <div class="contenedor">
+                <h2 class="titulo">Acerca de Nosotros</h2>
+                <div class="servicio-cont">
+                    <div class="servicio-ind">
+                        <img src="/imagenes/img_web/ilustracion1.svg" alt="">
+                        <h3>Name</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, qui?</p>
+                    </div>
+                    <div class="servicio-ind">
+                        <img src="/imagenes/img_web/ilustracion4.svg" alt="">
+                        <h3>Name</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, qui?</p>
+                    </div>
+                    <div class="servicio-ind">
+                        <img src="/imagenes/img_web/ilustracion3.svg" alt="">
+                        <h3>Name</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, qui?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>  
+        </div>
+    {%include 'footer.html.twig' %}  
 {% endblock %}
