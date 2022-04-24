@@ -26,7 +26,7 @@
                       <h5 class="card-title"><a href="{{ path("ver_incidencia",{id:incidencia.id}) }}">{{ incidencia.titulo }}</a></h5>
                       <p class="card-text">{{incidencia.descripcion}}</p>
                       <hr>
-                      <p class="card-text">Tipología: <small class="text-muted">{{incidencia.averia.nombre}}</small></p>
+                      <p class="card-text">Tipología: <small class="text-muted">{{incidencia.averia.nombre}}</small> <img src="/imagenes/iconos/{{incidencia.averia.nombre}}.svg" height="20px" alt="..." /></p>
                         <li class="list-group-item">
                             <a class="btn btn-secondary mb-1" data-bs-toggle="offcanvas" 
                             href="#offcanvasExample{{incidencia.id}}" role="button" aria-controls="offcanvasExample">
