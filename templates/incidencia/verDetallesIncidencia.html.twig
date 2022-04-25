@@ -1,5 +1,28 @@
-{# empty Twig template #}
-<h1>Datos Incidencia</h1>
-    <br>
-<div>Título: {{ incidenciaSeleccionada.descripcion }}</div>
-<div>Fecha: {{ incidenciaSeleccionada.fechaCreacion | date("Y-m-d") }}</div>
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva Incidencia{% endblock %}
+
+{% block body %} 
+    
+{%include 'menu.html.twig' %}
+<h1>Detalles Incidencia</h1>
+<div class="row g-0">
+    <div class="col-lg-5 d-none d-lg-block">
+      <div class="card w-100 text-white">
+      <img src="/imagenes/img_incidencias/{{incidenciaSeleccionada.imagen}}" height="300px"  class="card-img " alt="...">
+      <div class="card-img-overlay">
+        <h5 class="card-title">{{ incidenciaSeleccionada.titulo }}</h5>
+        <p class="card-text">{{ incidenciaSeleccionada.descripcion }}</p>
+        <p class="card-text">{{ incidenciaSeleccionada.fechaCreacion | date("Y-m-d") }}</p>
+      </div>
+    </div>
+    </div>
+    <div class="col-lg-7 d-flex flex-column align-items-end min-vh-100">
+        <iframe class="w-100" src='https://maps.google.com/maps?q={{ incidenciaSeleccionada.latitud }},{{ incidenciaSeleccionada.longitud }}&hl=es&z=14&amp;output=embed' height="300px" ></iframe>
+    </div>
+</div>
+
+<br><br><br><br>        
+{%include 'footer.html.twig' %}                 
+                
+{% endblock %}
