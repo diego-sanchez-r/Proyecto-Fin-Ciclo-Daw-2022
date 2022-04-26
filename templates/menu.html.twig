@@ -29,7 +29,7 @@
                   </li>
                 </ul>
                 <form class="d-flex">
-                  <a href="" class="form-text text-muted text-decoration-none" style="font-size: medium;" title="Ver Perfil">
+                  <a href="{{ path("app_usuario") }}" class="form-text text-muted text-decoration-none" style="font-size: medium;" title="Ver Perfil">
                   <div id="foto_usuario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }});" ></div>
                   <div class="nombreUsu" >{{ app.user.nombre }} {{ app.user.apellidos }}<br>
                   <p style="font-size: xx-small;">Ver Perfil</p></a>
