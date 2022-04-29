@@ -4,25 +4,32 @@
  */
 
 		function findMe(){
-			var mapa = document.getElementById('mapa');
-                        
-			// Verificar si soporta geolocalizacion
-//			if (navigator.geolocation) {
-//				output.innerHTML = "<p>Tu navegador soporta Geolocalizacion</p>";
-//			}else{
-//				output.innerHTML = "<p>Tu navegador no soporta Geolocalizacion</p>";
-//			}
 			//Obtenemos latitud y longitud
 			function localizacion(posicion){
 				var latitude = posicion.coords.latitude;
 				var longitude = posicion.coords.longitude;
                                 document.getElementById('lat').value = latitude;
                                 document.getElementById('long').value = longitude;
-				mapa.innerHTML = "<iframe src='https://maps.google.com/maps?q="+latitude+","+longitude+"&hl=es&z=14&amp;output=embed' width='300' height='200' style='border:0;' ></iframe>";
+                                
+        var vMarker
+        var map
+            map = new google.maps.Map(document.getElementById('mapa'), {
+                zoom: 14,
+                center: new google.maps.LatLng(latitude, longitude),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            vMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                draggable: true
+            });
+            google.maps.event.addListener(vMarker, 'dragend', function (evt) {
+                $("#lat").val(evt.latLng.lat().toFixed(6));
+                $("#long").val(evt.latLng.lng().toFixed(6));
+
+                map.panTo(evt.latLng);
+            });
+            map.setCenter(vMarker.position);
+            vMarker.setMap(map);
 			}
-//			function error(){
-//				output.innerHTML = "<p>No se pudo obtener tu ubicación</p>";
-//
-//			}
-			navigator.geolocation.getCurrentPosition(localizacion);
+                navigator.geolocation.getCurrentPosition(localizacion);
 		}
