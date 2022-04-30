@@ -30,7 +30,10 @@ class IncidenciaController extends AbstractController
         
         
         $repositorio = $doctrine->getRepository(Incidencia::class);
-        $misIncidencia = $repositorio->findAll();
+        $misIncidencia = $repositorio->findBy(
+           [],
+           ["fechaCreacion" => "DESC"] 
+           );
         
         return $this->render('incidencia/index.html.twig', [
             'controller_name' => 'IncidenciaController',
