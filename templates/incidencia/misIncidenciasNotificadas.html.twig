@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IncidenciaController!{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <style>
+        .contenedor {
+            padding: 60px;
+            width: 87%;
+            max-width: 100%;
+            margin: 0 auto; 
+        }
+
+    </style>
+    {%include 'menu.html.twig' %}
+<h2 class="titulo">Mis Incidencias Notificadas</h2>
+<div class="container-fluid">
+    <div class="px-lg-5">
+        <div class="row">
+            {% for incidencia in mis_incidencias %}
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="bg-white rounded shadow-sm border border-1">
+                        <div class="w-100 bg-secondary text-white text-center rounded-3">
+                            {{incidencia.fechaCreacion | date("d/m/Y")}}
+                        </div>
+                        <a href="/imagenes/img_incidencias/{{incidencia.imagen}}" data-lightbox="photos">
+                            <img class="img-fluid card-img-top rounded-2" src="/imagenes/img_incidencias/{{incidencia.imagen}}"  style="height: 250px !important;">
+                        </a>
+                        <div class="p-4">
+                            <h5> <a href="{{ path("ver_incidencia",{id:incidencia.id}) }}"class="text-dark" title="Ver Detalles">{{ incidencia.titulo }}</a></h5>     
+                            <a class="text-decoration-none text-danger fs-4" style="float: right; margin-right: 5px; " data-bs-toggle="offcanvas" title="Ubicación" 
+                                href="#offcanvasExample{{incidencia.id}}-{{incidencia.id}}" role="button" aria-controls="offcanvasExample">
+                                <i class="fa-solid fa-location-dot"></i></a>
+                            
+                            <p class="small text-muted mb-0">{{incidencia.descripcion}}<p style="font-size: xx-small;">Descripción</p></p>
+                            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                                <hr>
+                                <p class="small mb-0"><span class="font-weight-bold">Tipología:<small class="text-muted">{{incidencia.averia.nombre}}</small></span></p>
+                                <div class="badge badge-danger px-3 rounded-pill font-weight-normal bg-warning"><img src="/imagenes/iconos/{{incidencia.averia.nombre}}.svg" height="18px" alt="..." /></div>
+                            </div><hr>
+                                    <a class="text-decoration-none text-primary" data-bs-toggle="offcanvas" title="Todos los comentarios" 
+                                    href="#offcanvasExample{{incidencia.id}}" role="button" aria-controls="offcanvasExample">
+                                    <i class="fa-solid fa-comments"></i><p style="font-size: xx-small;">Ver Comentarios</p></a>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Comentar..."/>
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Enviar
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample{{incidencia.id}}" aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel"><i class="fa-solid fa-message"></i> Comentarios</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div>
+                                {% for comentario in incidencia.comentarios %} 
+                                    <p>{{comentario.texto}}</p>
+                                {%  endfor %}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Nuevo comentario..."/>
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasExample{{incidencia.id}}-{{incidencia.id}}" aria-labelledby="offcanvasBottomLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasBottomLabel"><i class="fa-solid fa-map-location-dot"></i> Ubicación Incidencia</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div>
+                                <iframe class="card-img-top" src='https://maps.google.com/maps?q={{ incidencia.latitud }},{{ incidencia.longitud }}&hl=es&z=14&amp;output=embed' height="200px" ></iframe>
+                            </div>
+                        </div>
+                    </div>
+                                
+                </div>   
+            {%  endfor %}
+        </div>
+    </div>
+</div>
+    {%include 'footer.html.twig' %}            
+{% endblock %}

@@ -28,10 +28,10 @@ class IncidenciaController extends AbstractController
             return $this->redirectToRoute("login");
         }
         
-        
+        $usuario = $this->getUser();
         $repositorio = $doctrine->getRepository(Incidencia::class);
         $misIncidencia = $repositorio->findBy(
-           [],
+           ["codigoPostal" => $usuario->getCodigo()],
            ["fechaCreacion" => "DESC"] 
            );
         
@@ -151,9 +151,29 @@ class IncidenciaController extends AbstractController
         }
     }
     
-    
-    
-    
+     /**
+     * @Route("/MisIncidenciasNotificadas", name="app_incidenciaMias")
+     */
+    public function verMisIncidencias(ManagerRegistry $doctrine): Response
+    {
+        //Comprobar si el usuario esta logeado.
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
+        
+        
+        $repositorio = $doctrine->getRepository(Incidencia::class);
+        $usuario = $this->getUser();
+        $misIncidencia = $repositorio->findBy(
+           ["usuario" => $usuario],
+           ["fechaCreacion" => "DESC"] 
+           );
+        
+        return $this->render('incidencia/misIncidenciasNotificadas.html.twig', [
+            'controller_name' => 'IncidenciaController',
+            'mis_incidencias' => $misIncidencia,
+        ]);
+    }
     
     
     

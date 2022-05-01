@@ -10,6 +10,15 @@
 				var longitude = posicion.coords.longitude;
                                 document.getElementById('lat').value = latitude;
                                 document.getElementById('long').value = longitude;
+                                fetch("https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+latitude+"&lon="+longitude+"")
+                                    .then(function(response) {
+                                        // Si todo sale bien en la promesa se devuelve el json de la respuesta
+                                        return response.json();
+                                    })
+                                    .then(function(myJson) {
+                                        console.log(myJson.address.postcode);
+                                        document.getElementById('codigo').value = myJson.address.postcode;
+                                    });
                                 
         var vMarker
         var map
@@ -25,6 +34,16 @@
             google.maps.event.addListener(vMarker, 'dragend', function (evt) {
                 $("#lat").val(evt.latLng.lat().toFixed(6));
                 $("#long").val(evt.latLng.lng().toFixed(6));
+                
+                fetch("https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat="+evt.latLng.lat()+"&lon="+evt.latLng.lng()+"")
+                .then(function(response) {
+                    // Si todo sale bien en la promesa se devuelve el json de la respuesta
+                    return response.json();
+                })
+                .then(function(myJson) {
+                    console.log(myJson.address.postcode);
+                    document.getElementById('codigo').value = myJson.address.postcode;
+                })
 
                 map.panTo(evt.latLng);
             });
