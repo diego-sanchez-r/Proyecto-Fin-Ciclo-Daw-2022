@@ -16,7 +16,7 @@
 
     </style>
     {%include 'menu.html.twig' %}
-<h2 class="titulo">Mis Incidencias Notificadas</h2>
+<h2 class="titulo">Incidencias de la Zona</h2>
 <div class="container-fluid">
     <div class="px-lg-5">
         <div class="row">
@@ -26,12 +26,13 @@
                         <div class="w-100 bg-secondary text-white text-center rounded-3">
                             {{incidencia.fechaCreacion | date("d/m/Y")}}
                         </div>
-                        <a href="/imagenes/img_incidencias/{{incidencia.imagen}}" data-lightbox="photos">
+                        <a href="/imagenes/img_incidencias/{{incidencia.imagen}}" data-lightbox="photos" title="Zoom">
                             <img class="img-fluid card-img-top rounded-2" src="/imagenes/img_incidencias/{{incidencia.imagen}}"  style="height: 250px !important;">
                         </a>
                         <div class="p-4">
+                            <br>
                             <h5> <a href="{{ path("ver_incidencia",{id:incidencia.id}) }}"class="text-dark" title="Ver Detalles">{{ incidencia.titulo }}</a></h5>     
-                            <a class="text-decoration-none text-danger fs-4" style="float: right; margin-right: 5px; " data-bs-toggle="offcanvas" title="Ubicación" 
+                            <a class="text-decoration-none text-danger fs-4" style="float: right; margin-right: 1px; margin-top: -70px; " data-bs-toggle="offcanvas" title="Ubicación" 
                                 href="#offcanvasExample{{incidencia.id}}-{{incidencia.id}}" role="button" aria-controls="offcanvasExample">
                                 <i class="fa-solid fa-location-dot"></i></a>
                             
@@ -74,7 +75,6 @@
                     </div>
                     <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasExample{{incidencia.id}}-{{incidencia.id}}" aria-labelledby="offcanvasBottomLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasBottomLabel"><i class="fa-solid fa-map-location-dot"></i> Ubicación Incidencia</h5>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
