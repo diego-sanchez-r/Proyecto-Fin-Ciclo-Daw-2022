@@ -48,8 +48,8 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'usuario', targetEntity: Incidencia::class)]
     private $incidencia;
-
-
+    
+    
     public function __construct()
     {
         $this->incidencia = new ArrayCollection();

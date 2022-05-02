@@ -19,9 +19,12 @@ class Comentario
     #[ORM\Column(type: 'datetime')]
     private $fechaCreacion;
 
-    #[ORM\ManyToOne(targetEntity: incidencia::class, inversedBy: 'comentarios')]
+    #[ORM\ManyToOne(targetEntity: Incidencia::class, inversedBy: 'comentarios')]
     private $incidencia;
-
+    
+    #[ORM\ManyToOne(targetEntity: Usuario::class, inversedBy: 'comentarios')]
+    private $usuario;
+    
     public function getId(): ?int
     {
         return $this->id;
