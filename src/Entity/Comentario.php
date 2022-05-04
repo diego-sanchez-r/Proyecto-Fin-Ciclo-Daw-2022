@@ -74,4 +74,14 @@ class Comentario
 
         return $this;
     }
+    
+    public function getUsuario() {
+        return $this->usuario;
+    }
+
+    public function setUsuario($usuario): void {
+        $this->usuario = $usuario;
+    }
+
+
 }
