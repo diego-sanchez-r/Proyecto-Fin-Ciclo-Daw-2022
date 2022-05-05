@@ -5,7 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Comentario;
+use App\Entity\Usuario;
+use App\Entity\Incidencia;
 class ComentarioController extends AbstractController
 {
     #[Route('/comentario', name: 'app_comentario')]
@@ -15,4 +19,33 @@ class ComentarioController extends AbstractController
             'controller_name' => 'ComentarioController',
         ]);
     }
+    
+    /**
+     * @Route("/comentario/nuevo", name="add_comentario")
+    */
+    public function insertar(Request $request, ManagerRegistry $doctrine): Response {
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
+        $comentario = new Comentario();
+      if ($request->isMethod('POST')) {
+            $texto = $request->request->get('texto');
+            $id_incidencia = $request->request->get('id_inci');
+            $repositorio3 = $doctrine->getRepository(Incidencia::class);
+            $inciComentario = $repositorio3->find($id_incidencia);
+            $comentario->setTexto($texto);
+            $comentario->setIncidencia($inciComentario);
+            $comentario->setUsuario($this->getUser());
+            $comentario->setFechaCreacion(new \DateTime());
+            $em = $doctrine->getManager();
+            $em->persist($comentario);
+            $em->flush();
+            
+            $this->addFlash("aviso", "Incidencia Insertada");
+            return $this->redirectToRoute("app_incidencia");
+        }
+    }
+    
+    
+    
 }

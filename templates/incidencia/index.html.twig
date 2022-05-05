@@ -45,14 +45,15 @@
                                     <a class="text-decoration-none text-primary" data-bs-toggle="offcanvas" title="Todos los comentarios" 
                                     href="#offcanvasExample{{incidencia.id}}" role="button" aria-controls="offcanvasExample">
                                     <i class="fa-solid fa-comments"></i><p style="font-size: xx-small;">Ver Comentarios</p></a>
-                            <div class="input-group">
-                                <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
-                                <input type="text" class="form-control" placeholder="Comentar..."/>
-                                <button class="btn btn-success" type="submit">
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Enviar
-                                </button>
-                            </div>
-
+                            <form action="{{ path("add_comentario")}}" method="post">
+                                    <div class="input-group">
+                                        <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
+                                        <input type="text" name="texto" class="form-control" placeholder="Comentar..."/>
+                                        <button class="btn btn-success" type="submit">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Enviar
+                                        </button>
+                                    </div>
+                            </form>
                         </div>
                     </div>
                     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample{{incidencia.id}}" aria-labelledby="offcanvasExampleLabel">
@@ -65,12 +66,15 @@
                                 {% for comentario in incidencia.comentarios %} 
                                     <p>{{comentario.texto}}</p>
                                 {%  endfor %}
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Nuevo comentario..."/>
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fa-solid fa-paper-plane"></i>
-                                    </button>
-                                </div>
+                            <form action="{{ path("add_comentario")}}" method="post">
+                                    <div class="input-group">
+                                        <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
+                                        <input type="text" name="texto" class="form-control" placeholder="Comentar..."/>
+                                        <button class="btn btn-success" type="submit">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Enviar
+                                        </button>
+                                    </div>
+                            </form>
                             </div>
                         </div>
                     </div>

@@ -36,48 +36,10 @@ class IncidenciaController extends AbstractController
            ["fechaCreacion" => "DESC"] 
            );
         
-        //COMENTARIOS
-        $comentario = new Comentario();
-        $form = $this->createFormBuilder($comentario)
-                ->add('texto', TextType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Por favor, Escriba lo que quires comentar.',
-                    ]),
-                ],
-                'label' => false,
-                'attr' => array(
-                    'placeholder' => 'Comentar...',
-                    'class' => 'form-control'
-                )
-            ])
-                ->add('submit', SubmitType::class, array(
-                    'label' => 'Enviar',
-                    'attr'  => array('class' => 'btn btn-success')
-                ))
-                ->getForm();
-                ;
-        $form->handleRequest($request);
         
-        if($form->isSubmitted() && $form->isValid()){
-            $texto = $request->request->get('texto');
-            $id_incidencia = $request->request->get('id_inci');
-            $repositorio3 = $doctrine->getRepository(Incidencia::class);
-            $inciComentario = $repositorio3->find($id_incidencia);
-            $comentario->setTexto($texto);
-            $comentario->setIncidencia($inciComentario);
-            $comentario->setUsuario($this->getUser());
-            $comentario->setFechaCreacion(new \DateTime());
-            $em = $doctrine->getManager();
-            $em->persist($comentario);
-            $em->flush();
-            
-            $this->addFlash("aviso", "Añadido Nuevo Comentario");
-        }
         return $this->renderForm('incidencia/index.html.twig', [
             'controller_name' => 'IncidenciaController',
             'mis_incidencias' => $misIncidencia,
-            'form_comentario'=>$form,
         ]);
     }
     
