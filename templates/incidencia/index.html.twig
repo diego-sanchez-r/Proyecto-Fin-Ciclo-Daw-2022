@@ -63,8 +63,11 @@
                         </div>
                         <div class="offcanvas-body">
                             <div>
-                                {% for comentario in incidencia.comentarios %} 
-                                    <p>{{comentario.texto}}</p>
+                                {% for comentario in incidencia.comentarios %}
+                                    <div class="foto_usuarioComentario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }});" ><div class="nombreUsuComentarios">{{ app.user.nombre }} {{ app.user.apellidos }}<br></div></div>
+                                    
+                                    <div class="comentario" >{{comentario.texto}}</div>
+                                    <br>
                                 {%  endfor %}
                             <form action="{{ path("add_comentario")}}" method="post">
                                     <div class="input-group">

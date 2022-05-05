@@ -91,6 +91,7 @@ header .textos-header{
     margin-top: 5px;
 }
 
+
 .nombreUsu{
     height: 50px;
     float: right;
@@ -99,6 +100,27 @@ header .textos-header{
     color: black;
     margin-top: 20px;
     margin-left: 12px;
+}
+
+.foto_usuarioComentario{
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px 0px #929FBA;
+    margin-top: 5px;
+}
+
+.nombreUsuComentarios{
+    color: black;
+    margin-left: 35px;
+    font-size: xx-small !important;
+}
+
+.comentario{
+    width: 100%;
+    font-size: medium !important;
 }
 
 @media screen and (max-width:1000px){
