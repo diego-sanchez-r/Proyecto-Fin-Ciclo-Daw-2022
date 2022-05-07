@@ -64,6 +64,28 @@ class IncidenciaController extends AbstractController
     }
     
     /**
+     * @Route("/incidencias/marcadores",name="ver_marcadores")
+    */
+    public function verMarcador(Request $request, ManagerRegistry $doctrine): Response {
+        //Comprobar si el usuario esta logeado.
+            if($this->getUser() === null){
+                return $this->redirectToRoute("login");
+            }
+
+        $repositorio = $doctrine->getRepository(Incidencia::class);
+        $misIncidencia = $repositorio->findBy(
+           [],     
+           ["fechaCreacion" => "DESC"] 
+           );
+        
+        
+        return $this->renderForm('incidencia/todasLasIncidenciasMarcador.html.twig', [
+            'controller_name' => 'IncidenciaController',
+            'mis_incidencias' => $misIncidencia,
+        ]);
+    }
+    
+    /**
      * @Route("/incidencia/nueva", name="add_incidencia")
      */
     public function insertar(Request $request, ManagerRegistry $doctrine,SluggerInterface $slugger): Response {

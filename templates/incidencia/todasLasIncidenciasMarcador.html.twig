@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva Incidencia{% endblock %}
+
+{% block body %}  
+    
+    {%include 'menu.html.twig' %}
+   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdJx9XEZB6ligrLJhe6i3TSzhQhHmmhS4&sensor=false"></script>
+    <center>
+        <div id="capa-mapa" style="width:800px;height:400px"></div>
+    </center>
+<script type="text/javascript">
+// creamos un array con la información de todos los puntos:
+// su nombre, latitud, longitud,
+// el icono que le queramos asignar (ver más adelante)
+// y un html totalmente personalizable a vuestro gusto, incluyendo imágenes y enlaces
+var misPuntos = [
+    {% for incidencia in mis_incidencias %}
+    ["{{ incidencia.titulo }}", "{{ incidencia.latitud }}", "{{ incidencia.longitud }}", "{% if incidencia.nivelGravedad == "Leve" %}icon1{% endif %}{% if incidencia.nivelGravedad == "Grave" %}icon2{% endif %}{% if incidencia.nivelGravedad == "Imprescindible" %}icon3{% endif %}", "<div><a href='{{ path("ver_incidencia",{id:incidencia.id})}}' class='text-dark' title='Ver Detalles'>{{ incidencia.titulo }}</a></div>"],
+    {%  endfor %}
+];
+
+function inicializaGoogleMaps() {
+    // Coordenadas del centro de nuestro recuadro principal
+    var x = 40.41429821383854;
+    var y = -3.7038801698585755;
+
+    var mapOptions = {
+        zoom: 6,
+        center: new google.maps.LatLng(x, y),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(document.getElementById("capa-mapa"), mapOptions);
+    setGoogleMarkers(map, misPuntos);
+}
+
+var markers = Array();
+var infowindowActivo = false;
+function setGoogleMarkers(map, locations) {
+    // Definimos los iconos a utilizar con sus medidas
+    var icon1 = new google.maps.MarkerImage(
+        "http://maps.google.com/mapfiles/ms/micons/green-dot.png",
+        new google.maps.Size(30, 30)
+    );
+    var icon2 = new google.maps.MarkerImage(
+        "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png",
+        new google.maps.Size(30, 30)
+    );
+    var icon3 = new google.maps.MarkerImage(
+        "http://maps.google.com/mapfiles/kml/pal3/icon51.png",
+        new google.maps.Size(35, 30)
+    );
+
+    for(var i=0; i<locations.length; i++) {
+        var elPunto = locations[i];
+        var myLatLng = new google.maps.LatLng(elPunto[1], elPunto[2]);
+
+        markers[i]=new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            icon: eval(elPunto[3]),
+            title: elPunto[0]
+        });
+        markers[i].infoWindow=new google.maps.InfoWindow({
+            content: elPunto[4]
+        });
+        google.maps.event.addListener(markers[i], 'click', function(){      
+            if(infowindowActivo)
+                infowindowActivo.close();
+            infowindowActivo = this.infoWindow;
+            infowindowActivo.open(map, this);
+        });
+    }
+}
+
+inicializaGoogleMaps();
+</script>
+    
+    {%include 'footer.html.twig' %}                 
+{% endblock %}   
