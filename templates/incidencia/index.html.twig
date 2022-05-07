@@ -37,7 +37,7 @@
                                 <i class="fa-solid fa-location-dot"></i></a>
                             
                             <p class="small text-muted mb-0">{{incidencia.descripcion}}<p style="font-size: xx-small;">Descripción</p></p>
-                            <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                            <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4" style="background-color: #D9D9D9 !important;">
                                 <hr>
                                 <p class="small mb-0"><span class="font-weight-bold">Tipología:<small class="text-muted">{{incidencia.averia.nombre}}</small></span></p>
                                 <div class="badge badge-danger px-3 rounded-pill font-weight-normal bg-warning"><img src="/imagenes/iconos/{{incidencia.averia.nombre}}.svg" height="18px" alt="..." /></div>
@@ -48,9 +48,9 @@
                             <form action="{{ path("add_comentario")}}" method="post">
                                     <div class="input-group">
                                         <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
-                                        <input type="text" name="texto" class="form-control" placeholder="Comentar..."/>
-                                        <button class="btn btn-success" type="submit">
-                                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Enviar
+                                        <input type="text" name="texto" class="form-control" required placeholder="Comentar..."/>
+                                        <button class="btn bg-success bg-gradient" type="submit">
+                                            <i class="fa-solid fa-paper-plane text-white" title="Comentar"></i>
                                         </button>
                                     </div>
                             </form>
@@ -58,15 +58,17 @@
                     </div>
                     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample{{incidencia.id}}" aria-labelledby="offcanvasExampleLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasExampleLabel"><i class="fa-solid fa-message"></i> Comentarios</h5>
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel"><i class="fa-solid fa-comment"></i> Comentarios</h5>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
                             <div>
                                 {% for comentario in incidencia.comentarios %}
-                                    <div class="foto_usuarioComentario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }});" ><div class="nombreUsuComentarios">{{ app.user.nombre }} {{ app.user.apellidos }}<br></div></div>
-                                    
+                                    <div class="foto_usuarioComentario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }});" ></div>
+                                    <div class="contenido rounded-pill">
+                                    <div class="nombreUsuComentarios fw-bold">{{ app.user.nombre }} {{ app.user.apellidos }}<br></div>
                                     <div class="comentario" >{{comentario.texto}}</div>
+                                    </div>
                                     <br>
                                 {%  endfor %}
                             <form action="{{ path("add_comentario")}}" method="post">
@@ -81,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasExample{{incidencia.id}}-{{incidencia.id}}" aria-labelledby="offcanvasBottomLabel">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample{{incidencia.id}}-{{incidencia.id}}" aria-labelledby="offcanvasRightLabel">
                         <div class="offcanvas-header">
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>

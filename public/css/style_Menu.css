@@ -108,19 +108,24 @@ header .textos-header{
     background-size: cover;
     background-position: center;
     border-radius: 40px;
-    box-shadow: 0px 0px 10px 0px #929FBA;
+    box-shadow: 0px 0px 5px 0px #929FBA;
     margin-top: 5px;
 }
 
 .nombreUsuComentarios{
     color: black;
-    margin-left: 35px;
     font-size: xx-small !important;
+    margin-left: 10px;
 }
 
 .comentario{
-    width: 100%;
+    width: auto;
     font-size: medium !important;
+    margin-left: 15px
+}
+.contenido{
+   margin-left: 35px;
+   background-color: #D9D9D9;
 }
 
 @media screen and (max-width:1000px){
