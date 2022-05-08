@@ -5,7 +5,9 @@
 {% block body %} 
     
 {%include 'menu.html.twig' %}
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
 <script>
     fetch("https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={{ incidenciaSeleccionada.latitud }}&lon={{ incidenciaSeleccionada.longitud }}")
     .then(function(response) {
@@ -26,7 +28,7 @@
             <section class="py-3 bg-light" id="scroll-target">
                 <div class="container px-5 my-5">
                     <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="/imagenes/img_incidencias/{{incidenciaSeleccionada.imagen}}" alt="..." /></div>
+                        <div class="col-lg-6"><a href="/imagenes/img_incidencias/{{incidenciaSeleccionada.imagen}}" data-lightbox="photos" title="Zoom"><img class="img-fluid rounded mb-5 mb-lg-0" src="/imagenes/img_incidencias/{{incidenciaSeleccionada.imagen}}" alt="..." /></div></a>
                         <div class="col-lg-6">
                             <h2 class="fw-bolder">{{ incidenciaSeleccionada.titulo }}</h2>
                             <p class="lead fw-normal text-muted mb-0">{{ incidenciaSeleccionada.descripcion }}</p>
