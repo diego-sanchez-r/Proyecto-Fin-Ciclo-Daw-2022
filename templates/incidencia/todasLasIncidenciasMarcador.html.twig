@@ -6,9 +6,16 @@
     
     {%include 'menu.html.twig' %}
    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdJx9XEZB6ligrLJhe6i3TSzhQhHmmhS4&sensor=false"></script>
+    <h2 class="titulo">Mapa de Gravedad</h2>
     <center>
-        <div id="capa-mapa" style="width:800px;height:400px"></div>
+        <div>Leve <img src="http://maps.google.com/mapfiles/ms/micons/green-dot.png"/> 
+             Grave <img src="http://maps.google.com/mapfiles/ms/micons/yellow-dot.png" /> 
+             Muy Grave (Peligro) <img src="http://maps.google.com/mapfiles/kml/pal3/icon51.png" />
+        </div>
+        <br>
+        <div id="capa-mapa"></div>
     </center>
+    <br><br><br>
 <script type="text/javascript">
 // creamos un array con la información de todos los puntos:
 // su nombre, latitud, longitud,
