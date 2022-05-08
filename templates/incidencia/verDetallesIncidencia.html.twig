@@ -5,27 +5,60 @@
 {% block body %} 
     
 {%include 'menu.html.twig' %}
-<h1>Detalles Incidencia</h1>
-<div class="row">
-    <div class="col m-2">
-    <div class="card w-100">
-      <img src="/imagenes/img_incidencias/{{incidenciaSeleccionada.imagen}}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ incidenciaSeleccionada.titulo }}</h5>
-        <p class="card-text">{{ incidenciaSeleccionada.titulo }}</p>
-      </div>
-    </div>
-    </div>
-    <div class="col m-2">
-      <div class="card w-100">
-      <iframe class="card-img-top" src='https://maps.google.com/maps?q={{ incidenciaSeleccionada.latitud }},{{ incidenciaSeleccionada.longitud }}&hl=es&z=14&amp;output=embed' height="300px" ></iframe>
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-    </div>
-</div>
+
+<script>
+    fetch("https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={{ incidenciaSeleccionada.latitud }}&lon={{ incidenciaSeleccionada.longitud }}")
+    .then(function(response) {
+        // Si todo sale bien en la promesa se devuelve el json de la respuesta
+        return response.json();
+    })
+    .then(function(myJson) {
+        let town = document.getElementById('town');
+        let display_name = document.getElementById('display_name');
+        town.innerHTML = " "+myJson.address.town+" ("+myJson.address.postcode+")";
+        display_name.innerHTML = " "+myJson.display_name+" ";
+        
+    });
+</script>
+      <h2 class="titulo">Detalles</h2>
+      <main class="flex-shrink-0">
+      <!-- About section one-->
+            <section class="py-3 bg-light" id="scroll-target">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="/imagenes/img_incidencias/{{incidenciaSeleccionada.imagen}}" alt="..." /></div>
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder">{{ incidenciaSeleccionada.titulo }}</h2>
+                            <p class="lead fw-normal text-muted mb-0">{{ incidenciaSeleccionada.descripcion }}</p>
+                            <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4" style="background-color: #D9D9D9 !important;">
+                                <hr>
+                                <p class="small mb-0"><span class="font-weight-bold">Tipología:<small class="text-muted">{{incidenciaSeleccionada.averia.nombre}}</small></span></p>
+                                <div class="badge badge-danger px-3 rounded-pill font-weight-normal bg-warning"><img src="/imagenes/iconos/{{incidenciaSeleccionada.averia.nombre}}.svg" height="18px" alt="..." /></div>
+                            </div><br>
+                            <div class="w-100 bg-secondary text-white text-center rounded-3">
+                                {{incidenciaSeleccionada.fechaCreacion | date("d/m/Y")}}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- About section two-->
+            <h2 class="titulo">Ubicación</h2>
+            <section class="py-3">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6 order-first order-lg-last"><iframe class="img-fluid rounded mb-5 mb-lg-0" src='https://maps.google.com/maps?q={{ incidenciaSeleccionada.latitud }},{{ incidenciaSeleccionada.longitud }}&hl=es&z=14&amp;output=embed' style="height: 300px !important;width: 600px !important" ></iframe></div>
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder" id="town" ></h2>
+                            <p class="lead fw-normal text-muted mb-0" id="display_name"></p>
+                            <button class="btn btn-success">Lat:{{ incidenciaSeleccionada.latitud }}</button>
+                            <button class="btn btn-success">Long:{{ incidenciaSeleccionada.longitud }}</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+      </main>
 
 <br><br><br><br>        
 {%include 'footer.html.twig' %}                 
