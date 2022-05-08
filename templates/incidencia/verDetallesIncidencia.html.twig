@@ -15,7 +15,7 @@
     .then(function(myJson) {
         let town = document.getElementById('town');
         let display_name = document.getElementById('display_name');
-        town.innerHTML = " "+myJson.address.town+" ("+myJson.address.postcode+")";
+        town.innerHTML = "<i class='fa-solid fa-location-dot text-danger'> </i> "+myJson.address.town+" ("+myJson.address.postcode+")";
         display_name.innerHTML = " "+myJson.display_name+" ";
         
     });
@@ -52,8 +52,8 @@
                         <div class="col-lg-6">
                             <h2 class="fw-bolder" id="town" ></h2>
                             <p class="lead fw-normal text-muted mb-0" id="display_name"></p>
-                            <button class="btn btn-success">Lat:{{ incidenciaSeleccionada.latitud }}</button>
-                            <button class="btn btn-success">Long:{{ incidenciaSeleccionada.longitud }}</button>
+                            <button class="btn btn-success rounded-pill">Lat: {{ incidenciaSeleccionada.latitud }}</button>
+                            <button class="btn btn-success rounded-pill">Long: {{ incidenciaSeleccionada.longitud }}</button>
                         </div>
                     </div>
                 </div>
