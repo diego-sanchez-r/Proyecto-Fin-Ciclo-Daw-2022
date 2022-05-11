@@ -1,0 +1,287 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NoticiaController!{% endblock %}
+
+{% block body %}
+    {%include 'menu.html.twig' %}
+    
+        <style>
+        .contenedor {
+            padding: 60px;
+            width: 87%;
+            max-width: 100%;
+            margin: 0 auto; 
+        }
+
+    </style>
+    {% set contadorElectrica = 0 %}{% set contadorGas = 0 %}{% set contadorAgua = 0 %}
+    {% set contadorTelefono = 0 %}{% set contadorInternet = 0 %}{% set contadorCirculacion = 0 %}
+    {% set contadorResiduos = 0 %}{% set contadorMobiliario_Urbano = 0 %}{% set contadorParques_y_Jardines = 0 %}
+    {% set contadorSenalizacion = 0 %}{% set contadorMantenimiento = 0 %}{% set contadorAceras_y_Calzadas = 0 %}
+    {% set contadorVandalismo = 0 %}{% set contadorPlagas_de_insectos_y_otros = 0 %}{% set contadorOtras_Averias = 0 %}
+    
+        {% for incidencia in mis_incidencias %}
+            {% if incidencia.averia.id == 1 %}{% set contadorElectrica = contadorElectrica + 1 %}{% endif %}
+            {% if incidencia.averia.id == 2 %}{% set contadorGas = contadorGas + 1 %}{% endif %}
+            {% if incidencia.averia.id == 3 %}{% set contadorAgua = contadorAgua + 1 %}{% endif %}
+            {% if incidencia.averia.id == 4 %}{% set contadorTelefono = contadorTelefono + 1 %}{% endif %}
+            {% if incidencia.averia.id == 5 %}{% set contadorInternet = contadorInternet + 1 %}{% endif %}
+            {% if incidencia.averia.id == 6 %}{% set contadorCirculacion = contadorCirculacion + 1 %}{% endif %}
+            {% if incidencia.averia.id == 8 %}{% set contadorResiduos = contadorResiduos + 1 %}{% endif %}
+            {% if incidencia.averia.id == 9 %}{% set contadorMobiliario_Urbano = contadorMobiliario_Urbano + 1 %}{% endif %}
+            {% if incidencia.averia.id == 10 %}{% set contadorParques_y_Jardines = contadorParques_y_Jardines + 1 %}{% endif %}
+            {% if incidencia.averia.id == 11 %}{% set contadorSenalizacion = contadorSenalizacionc + 1 %}{% endif %}
+            {% if incidencia.averia.id == 12 %}{% set contadorMantenimiento = contadorMantenimiento + 1 %}{% endif %}
+            {% if incidencia.averia.id == 13 %}{% set contadorAceras_y_Calzadas = contadorAceras_y_Calzadas + 1 %}{% endif %}
+            {% if incidencia.averia.id == 14 %}{% set contadorVandalismo = contadorVandalismo + 1 %}{% endif %}
+            {% if incidencia.averia.id == 15 %}{% set contadorPlagas_de_insectos_y_otros = contadorPlagas_de_insectos_y_otros + 1 %}{% endif %}
+            {% if incidencia.averia.id == 16 %}{% set contadorOtras_Averias = contadorOtras_Averias + 1 %}{% endif %}
+        {%  endfor %}
+        <div class="contenedor">
+        <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-warning border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-warning fw-bold">
+                                Electrica</div>
+                            <div class="fw-light">Nº {{ contadorElectrica }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Electrica .svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-danger border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-danger fw-bold">
+                                Gas</div>
+                            <div class="fw-light">Nº {{ contadorGas }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Gas.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-info border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-info fw-bold">
+                                Agua</div>
+                            <div class="fw-light">Nº {{ contadorAgua }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Agua.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-warning border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-warning fw-bold">
+                                Teléfono</div>
+                            <div class="fw-light">Nº {{ contadorTelefono }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Telefono.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-secondary border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-secondary fw-bold">
+                                Internet</div>
+                            <div class="fw-light">Nº {{ contadorInternet }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Internet.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-danger border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-danger fw-bold">
+                                Circulacion</div>
+                            <div class="fw-light">Nº {{ contadorCirculacion }}</div>
+                        </div>
+                        <div class="col-auto">
+                           <img src="/imagenes/iconos/Circulacion.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-success border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-success fw-bold">
+                                Residuos</div>
+                            <div class="fw-light">Nº {{ contadorResiduos }}</div>
+                        </div>
+                        <div class="col-auto">
+                             <img src="/imagenes/iconos/Residuos.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-primary border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-primary fw-bold">
+                                Mobiliario Urbano</div>
+                            <div class="fw-light">Nº {{ contadorMobiliario_Urbano }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Mobiliario Urbano.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-success border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-success fw-bold">
+                            Parques y Jardines</div>
+                            <div class="fw-light">Nº {{ contadorParques_y_Jardines }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Parques y Jardines.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-primary border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-primary fw-bold">
+                                Señalizacion</div>
+                            <div class="fw-light">Nº {{ contadorSenalizacion }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Señalizacion.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-warning border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-warning fw-bold">
+                                Mantenimiento</div>
+                            <div class="fw-light">Nº {{ contadorMantenimiento }}</div>
+                        </div>
+                        <div class="col-auto">
+                           <img src="/imagenes/iconos/Mantenimiento.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-dark border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-dark fw-bold">
+                                Aceras y Calzadas</div>
+                            <div class="fw-light">Nº {{ contadorAceras_y_Calzadas }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Aceras y Calzadas.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-info border-4 rounded">
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-info fw-bold">
+                                Vandalismo</div>
+                            <div class="fw-light">Nº {{ contadorVandalismo }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Vandalismo.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-success border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-success fw-bold">
+                                Plagas</div>
+                            <div class="fw-light">Nº {{ contadorPlagas_de_insectos_y_otros }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Plagas de insectos y otros.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="border-start border-warning border-4 rounded" >
+                <div class="card-body border border-2 rounded">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-warning fw-bold">
+                                Otras Averias</div>
+                            <div class="fw-light">Nº {{ contadorElectrica }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="/imagenes/iconos/Otras Averias.svg" height="25px" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>                
+    {{ contadorElectrica }}  
+    {{ contadorVandalismo }} 
+    {%include 'footer.html.twig' %} 
+{% endblock %}

@@ -200,6 +200,29 @@ class IncidenciaController extends AbstractController
     }
     
     
+    /**
+     * @Route("/incidencias/graficas",name="ver_graficas")
+    */
+    public function verGraficas(Request $request, ManagerRegistry $doctrine): Response {
+        //Comprobar si el usuario esta logeado.
+            if($this->getUser() === null){
+                return $this->redirectToRoute("login");
+            }
+
+        $repositorio = $doctrine->getRepository(Incidencia::class);
+        $misIncidencia = $repositorio->findBy(
+           [],     
+           ["fechaCreacion" => "DESC"] 
+           );
+        
+        
+        return $this->renderForm('incidencia/graficasIncidencias.html.twig', [
+            'controller_name' => 'IncidenciaController',
+            'mis_incidencias' => $misIncidencia,
+        ]);
+    }
+    
+    
     
     
 }
