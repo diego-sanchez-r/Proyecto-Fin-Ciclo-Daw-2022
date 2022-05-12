@@ -19,8 +19,9 @@
     {% set contadorResiduos = 0 %}{% set contadorMobiliario_Urbano = 0 %}{% set contadorParques_y_Jardines = 0 %}
     {% set contadorSenalizacion = 0 %}{% set contadorMantenimiento = 0 %}{% set contadorAceras_y_Calzadas = 0 %}
     {% set contadorVandalismo = 0 %}{% set contadorPlagas_de_insectos_y_otros = 0 %}{% set contadorOtras_Averias = 0 %}
-    
+    {% set contadorTotal = 0 %}
         {% for incidencia in mis_incidencias %}
+            {% set contadorTotal = contadorTotal + 1 %}
             {% if incidencia.averia.id == 1 %}{% set contadorElectrica = contadorElectrica + 1 %}{% endif %}
             {% if incidencia.averia.id == 2 %}{% set contadorGas = contadorGas + 1 %}{% endif %}
             {% if incidencia.averia.id == 3 %}{% set contadorAgua = contadorAgua + 1 %}{% endif %}
@@ -270,7 +271,7 @@
                         <div class="col mr-2">
                             <div class="text-warning fw-bold">
                                 Otras Averias</div>
-                            <div class="fw-light">Nº {{ contadorElectrica }}</div>
+                            <div class="fw-light">Nº {{ contadorOtras_Averias }}</div>
                         </div>
                         <div class="col-auto">
                             <img src="/imagenes/iconos/Otras Averias.svg" height="25px" alt="..." />
@@ -280,8 +281,120 @@
             </div>
         </div>
         </div>
-        </div>                
-    {{ contadorElectrica }}  
-    {{ contadorVandalismo }} 
+         
+        <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Nº Tipología</h6>
+                </div>
+                <div class="card-body">
+                    <h4 class="small font-weight-bold">Electrica<span
+                            {% set contadorElectrica = contadorElectrica / contadorTotal * 100 %}
+                            class="float-right"> {{ contadorElectrica | round}}% </span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ contadorElectrica | round}}%"
+                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Gas <span
+                            {% set contadorGas = contadorGas / contadorTotal * 100 %}
+                            class="float-right">{{ contadorGas | round}}%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ contadorGas | round}}%"
+                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Agua <span
+                            {% set contadorAgua = contadorAgua / contadorTotal * 100 %}
+                            class="float-right">{{ contadorAgua | round}}%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: {{ contadorAgua | round}}%"
+                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Telefono <span
+                            {% set contadorTelefono = contadorTelefono / contadorTotal * 100 %}
+                            class="float-right">{{ contadorTelefono | round}}%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ contadorTelefono | round}}%"
+                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">Internet <span
+                            {% set contadorTelefono = contadorTelefono / contadorTotal * 100 %}
+                            class="float-right">{{ contadorInternet | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ contadorInternet | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                            <br><h4 class="small font-weight-bold">Circulacion <span
+                            {% set contadorCirculacion = contadorCirculacion / contadorTotal * 100 %}
+                            class="float-right">{{ contadorCirculacion | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ contadorCirculacion | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>        
+                    <br><h4 class="small font-weight-bold">Residuos <span
+                            {% set contadorResiduos = contadorResiduos / contadorTotal * 100 %}
+                            class="float-right">{{ contadorResiduos | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ contadorResiduos | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> 
+                    <br><h4 class="small font-weight-bold">Mobiliario Urbano <span
+                            {% set contadorMobiliario_Urbano = contadorMobiliario_Urbano / contadorTotal * 100 %}
+                            class="float-right">{{ contadorMobiliario_Urbano | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ contadorMobiliario_Urbano | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br><h4 class="small font-weight-bold">Parques y Jardines <span
+                            {% set contadorParques_y_Jardines = contadorParques_y_Jardines / contadorTotal * 100 %}
+                            class="float-right">{{ contadorParques_y_Jardines | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ contadorParques_y_Jardines | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>            
+                    <br><h4 class="small font-weight-bold">Señalizacion <span
+                            {% set contadorSenalizacion = contadorSenalizacion / contadorTotal * 100 %}
+                            class="float-right">{{ contadorSenalizacion | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ contadorSenalizacion | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>  
+                    <br><h4 class="small font-weight-bold">Mantenimiento <span
+                            {% set contadorMantenimiento = contadorMantenimiento / contadorTotal * 100 %}
+                            class="float-right">{{ contadorMantenimiento | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ contadorMantenimiento | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br><h4 class="small font-weight-bold">Aceras y Calzadas <span
+                            {% set contadorAceras_y_Calzadas = contadorAceras_y_Calzadas / contadorTotal * 100 %}
+                            class="float-right">{{ contadorAceras_y_Calzadas | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ contadorAceras_y_Calzadas | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br><h4 class="small font-weight-bold">Vandalismo <span
+                            {% set contadorVandalismo = contadorVandalismo / contadorTotal * 100 %}
+                            class="float-right">{{ contadorVandalismo | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: {{ contadorVandalismo | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> 
+                    <br><h4 class="small font-weight-bold">Plagas de insectos y otros <span
+                            {% set contadorPlagas_de_insectos_y_otros = contadorPlagas_de_insectos_y_otros / contadorTotal * 100 %}
+                            class="float-right">{{ contadorPlagas_de_insectos_y_otros | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ contadorPlagas_de_insectos_y_otros | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br><h4 class="small font-weight-bold">Otras Averias <span
+                            {% set contadorOtras_Averias = contadorOtras_Averias / contadorTotal * 100 %}
+                            class="float-right">{{ contadorOtras_Averias | round}}%</span></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ contadorOtras_Averias | round}}%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>         
+                </div>
+        </div>
+                        
+                        </div>
     {%include 'footer.html.twig' %} 
 {% endblock %}
