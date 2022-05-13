@@ -17,7 +17,7 @@
               <p class="card-text">{{noticia.descripcion}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                    <a href="{{ path("ver_noticia",{id:noticia.id})}}"><button type="button" class="btn btn-sm btn-outline-secondary">Ver</button></a>
                 </div>
                 <small class="text-muted">{{noticia.fechaCreacion | date("d/m/Y")}}</small>
               </div>

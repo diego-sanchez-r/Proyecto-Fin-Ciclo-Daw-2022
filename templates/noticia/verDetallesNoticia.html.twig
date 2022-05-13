@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NoticiaController!{% endblock %}
+
+{% block body %}
+    {%include 'menu.html.twig' %}
+        <style>
+        .contenedor {
+            width: 70%;
+            max-width: 100%;
+            margin: 0 auto; 
+        }
+
+    </style>
+<div class="contenedor">
+                <div class="px-5 my-5">
+                    <div class="row gx-5">
+                        <div class="col-lg-3">
+                            <div class="d-flex align-items-center mt-lg-5 mb-4">
+                                <img class="img-fluid rounded-circle" src="/imagenes/img_noticias/new20noticia.png" style="height:50px" alt="..." />
+                                <div class="ms-3">
+                                    <div class="fw-bold">Detalles</div>
+                                    <div class="text-muted">Noticia</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <!-- Post content-->
+                            <article>
+                                <!-- Post header-->
+                                    <!-- Post title-->
+                                    <h1 class="fw-bolder mb-1">{{noticiaSeleccionada.titulo}}</h1>
+                                    <!-- Post meta content-->
+                                    <div class="text-muted fst-italic mb-2">{{noticiaSeleccionada.fechaCreacion | date("M d, Y")}}</div>
+                                    <!-- Post categories-->
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{noticiaSeleccionada.titulo}}</a>
+                                <!-- Preview image figure-->
+                                <br><br>
+                                <img class="img-fluid rounded" src="/imagenes/img_noticias/{{noticiaSeleccionada.imagen}}" alt="..."/>
+                                <!-- Post content-->
+                                <section class="mb-5">
+                                    <h2 class="fw-bolder mb-4 mt-5">{{noticiaSeleccionada.titulo}}</h2>
+                                    <p class="fs-5 mb-4">{{noticiaSeleccionada.descripcion}}</p>
+                                </section>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {%include 'footer.html.twig' %} 
+{% endblock %}
