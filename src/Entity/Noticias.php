@@ -24,6 +24,9 @@ class Noticias
 
     #[ORM\Column(type: 'string', length: 255)]
     private $imagen;
+    
+    #[ORM\ManyToOne(targetEntity: Usuario::class, inversedBy: 'noticias')]
+    private $usuario;
 
     public function getId(): ?int
     {

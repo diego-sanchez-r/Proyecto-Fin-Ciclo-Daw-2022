@@ -21,6 +21,9 @@ class Contacta
 
     #[ORM\Column(type: 'datetime')]
     private $fechaCreacion;
+    
+    #[ORM\ManyToOne(targetEntity: Usuario::class, inversedBy: 'contacta')]
+    private $usuario;
 
     public function getId(): ?int
     {
