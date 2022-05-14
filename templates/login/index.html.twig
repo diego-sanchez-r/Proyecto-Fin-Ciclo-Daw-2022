@@ -5,7 +5,7 @@
 {% block body %}
 <!-- CSS -->
 <link rel="stylesheet" href="/css/style_Login_Registro.css" />
-<section class="bg-dark">
+<section style="background-color: #626F8B" >
         <div class="row g-0">
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -47,20 +47,20 @@
                   </button>
                 </div>
             </div>
-            <div class="col-lg-5 bg-dark d-flex flex-column align-items-end min-vh-100">
+            <div class="col-lg-5 d-flex flex-column align-items-end min-vh-100">
                 <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
                   <img src="/imagenes/img_web/logo.png" class="row-auto col-auto w-100 rounded"> 
                   <br>
                   <br>
-                <h1 class="font-weight-bold mb-2">Bienvenido</h1>
+                <h3 class="font-weight-bold mb-2">Bienvenido</h3>
                 <form class="mb-4" action="{{ path('login') }}" method="post">
                     <div class="mb-4">
                       <i class="fa-solid fa-envelope"></i> <label for="username" class="form-label font-weight-bold">Correo Electrónico </label> 
-                      <input type="email" class="form-control text-primary" required id="username" placeholder="Ingresa tu email" aria-describedby="emailHelp" name="_username" value="{{ last_username }}">
+                      <input type="email" class="form-control text-muted" required id="username" placeholder="Ingresa tu email" aria-describedby="emailHelp" name="_username" value="{{ last_username }}">
                     </div>
                     <div class="mb-2">
                       <i class="fa-solid fa-unlock"></i> <label for="password" class="form-label font-weight-bold">Contraseña</label>
-                      <input type="password" class="form-control text-primary" required placeholder="Ingresa tu contraseña" id="password" name="_password"><br>
+                      <input type="password" class="form-control text-muted" required placeholder="Ingresa tu contraseña" id="password" name="_password"><br>
                       <label>
                         <input type="checkbox" name="_remember_me" checked/>
                         Recuerdame
