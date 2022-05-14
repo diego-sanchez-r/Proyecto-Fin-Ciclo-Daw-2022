@@ -9,6 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 /* footer */
 
 footer{
+    font-family: sans-serif;
     background: #929fba;
     padding: 10px 0 30px 0;
     margin: auto;

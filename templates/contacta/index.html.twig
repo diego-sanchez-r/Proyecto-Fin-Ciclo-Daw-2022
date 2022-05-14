@@ -1,20 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactaController!{% endblock %}
+{% block title %}Hello NoticiaController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Diego_Sanchez/OneDrive/Proyecto Fin de Ciclo Daw/Sy_ProyectoFinCicloIncidencias/src/Controller/ContactaController.php'|file_link(0) }}">src/Controller/ContactaController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Diego_Sanchez/OneDrive/Proyecto Fin de Ciclo Daw/Sy_ProyectoFinCicloIncidencias/templates/contacta/index.html.twig'|file_link(0) }}">templates/contacta/index.html.twig</a></code></li>
-    </ul>
-</div>
+    {%include 'menu.html.twig' %}
+        <link rel="stylesheet" href="/css/style_Form_Validar.css" />
+        <script src="/js/Validar_Form.js"></script> 
+        
+        
+            <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form id="regForm">
+                    <h1 id="register">Contacta con Nosotros <i class="fa-solid fa-envelope"></i></h1>
+                    <div class="all-steps" id="all-steps"> <span class="step"><i class="fa-solid fa-circle-question"></i></span> <span class="step"><i class="fa-solid fa-keyboard"></i></span> <span class="step"><i class="fa-solid fa-clipboard-check"></i></span></div>
+                    <div class="tab">
+                        <h6>¿Por qué tema nos contactás?</h6>
+                        <p><input placeholder="Motivo..." oninput="this.className = ''" name="motivo"></p>
+                    </div>
+                    <div class="tab">
+                        <h6>Escribe la descripción:</h6>
+                        <p><input placeholder="Descripción..." oninput="this.className = ''" name="descripcion"></p>    
+                    </div>
+                    <div class="tab" id="text-message"><br>
+                        <input type="submit" name="Confirmar" class="btn btn-outline-primary">
+                    </div><br>
+                    <div style="overflow:auto;" id="nextprevious">
+                        <div style="float:right;"> <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fa fa-angle-double-left"></i></button> <button type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fa fa-angle-double-right"></i></button> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        <br><br><br>
+    {%include 'footer.html.twig' %} 
 {% endblock %}
+
