@@ -16,18 +16,80 @@
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Servicios</h5>
+                            <h2 id="exampleModalLabel" class="modal-title text-primary">Servicios</h2>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                           <a class="dropdown-item" href="#">Incidencias Zona</a>
-                           <a class="dropdown-item" href="#">Nueva Incidencia</a>
-                           <a class="dropdown-item" href="#">Mis Incidencias</a>
-                           <a class="dropdown-item" href="#">Marcadores Mapa</a>
-                           <a class="dropdown-item" href="#">Noticias y Alertas</a>
-                           <a class="dropdown-item" href="#">Grafica y Análisis</a>
-                           <a class="dropdown-item" href="#">Ayuda Usuario</a>
-                           <a class="dropdown-item" href="#">Contacta con Nosotros</a>
+                               <section class="portafolio2">
+                                    <div class="contenedor2">
+                                        <div class="galeria-port2">
+                                            <div class="imagen-port2">
+                                                <img src="/imagenes/img_web/img1.jpg" alt="">
+                                                <a href="{{ path("app_incidencia") }}"> 
+                                                <div class="hover-galeria2" title="Ver incidencias">
+                                                    <p>Ver Incidencias</p>
+                                                </div>
+                                                </a>
+                                            </div>
+                                            <div class="imagen-port2">
+                                                <img src="/imagenes/img_web/img2.jpg" alt="">
+                                                <a href="{{ path("add_incidencia") }}"> 
+                                                <div class="hover-galeria2" title="Nueva Incidencia">
+                                                    <p>Nueva Incidencia</p>
+                                                </div>
+                                                </a>
+                                            </div>
+                                            <div class="imagen-port2">
+                                                <img src="/imagenes/img_web/img3.jpg" alt="">
+                                                <a href="{{ path("app_incidenciaMias") }}">
+                                                <div class="hover-galeria2" title="Mis Incidencia">
+                                                    <p>Mis Incidencias</p>
+                                                </div>
+                                                </a>
+                                            </div>
+                                            <div class="imagen-port2">
+                                                <img src="/imagenes/img_web/img1.jpg" alt="">
+                                                <a href="{{ path("ver_marcadores") }}">
+                                                <div class="hover-galeria2" title="Marcadores Mapa">
+                                                    <p>Marcadores Mapa</p>
+                                                </div>
+                                                </a>
+                                            </div>
+                                            <div class="imagen-port2">
+                                                <img src="/imagenes/img_web/img4.jpg" alt="">
+                                                <a href="{{ path("app_noticia") }}">
+                                                <div class="hover-galeria2">
+                                                    <p>Noticias y Alertas</p>
+                                                </div>
+                                                </a>
+                                            </div>
+                                            <div class="imagen-port2">
+                                                <img src="/imagenes/img_web/img5.jpg" alt="">
+                                                <a href="{{ path("ver_graficas") }}">
+                                                <div class="hover-galeria2">
+                                                    <p>Graficas y Nº de Incidencias</p>
+                                                </div>
+                                                </a>
+                                            </div>
+                                            <div class="imagen-port2">
+                                                <img src="/imagenes/img_web/img6.jpg" alt="">
+                                                <a href="{{ path("app_ayuda") }}">
+                                                <div class="hover-galeria2">
+                                                    <p>Ayuda Usuario</p>
+                                                </div>
+                                                </a>
+                                            </div>
+                                            <div class="imagen-port2">
+                                                <img src="/imagenes/img_web/img7.jpg" alt="">
+                                                <a href="{{ path("app_contacta") }}">
+                                                <div class="hover-galeria2">
+                                                    <p>Contacta con Nosotros</p>
+                                                </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
