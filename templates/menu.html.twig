@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="/css/style_Menu.css" />
 <header>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #DEE1E8 ;">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #DEE1E8;">
             <div class="container-fluid">
-              <a class="navbar-brand" href="{{ path("inicio") }}" title="Inicio" ><a class="navbar-brand" href="{{ path("inicio") }}" title="Inicio" ><img src="/imagenes/img_web/logo_sin_fondo.png" style="height:70px"/></a></a>
+              <a class="navbar-brand" href="{{ path("inicio") }}" title="Inicio" ><img src="/imagenes/img_web/logo_sin_fondo_min.png" style="height:70px"/></a>
               <button id="btnMenu" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 Menú
@@ -10,22 +10,36 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link active" aria-current="page" href="{{ path("inicio") }}"title="Inicio">Inicio</a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Servicios</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                           <a class="dropdown-item" href="#">Incidencias Zona</a>
+                           <a class="dropdown-item" href="#">Nueva Incidencia</a>
+                           <a class="dropdown-item" href="#">Mis Incidencias</a>
+                           <a class="dropdown-item" href="#">Marcadores Mapa</a>
+                           <a class="dropdown-item" href="#">Noticias y Alertas</a>
+                           <a class="dropdown-item" href="#">Grafica y Análisis</a>
+                           <a class="dropdown-item" href="#">Ayuda Usuario</a>
+                           <a class="dropdown-item" href="#">Contacta con Nosotros</a>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
+                    <a class="nav-link dropdown-toggle" title="Servicios" data-bs-target="#exampleModal" data-bs-toggle="modal" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Servicios
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                   </li>
                 </ul>
                 <form class="d-flex">
@@ -39,29 +53,36 @@
               </div>
             </div>
           </nav>
-        <section class="textos-header">
+        <section class="textos-header" id="titulo_gestion">
             <h1>GESTIÓN DE INCIDENCIAS</h1>
             <h3>Notifica cualquier tipo de problema,
                 incidencia, averia, queja, reclamación,
                 etc.</h3>
         </section>
-                  <a class="navbar-brand" href="{{ path("inicio") }}" title="Inicio" ><img src="/imagenes/img_web/logo_sin_fondo.png" id="logo"/></a>
-        <div class="wave" style="height: 150px; overflow: hidden; z-index: 1 !important;">
-          <svg viewBox="0 0 500 150" preserveAspectRatio="none"style="height: 100%; width: 100%;">  
+        <a href="{{ path("inicio") }}" title="Inicio">
+            <img src="/imagenes/img_web/logo_sin_fondo.png" id="logo" style="z-index: 20 !important;"/>
+        </a>
+        <div class="wave" style="z-index: 1 !important;">
+          <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%; z-index: 1 !important; ">  
                 <path d="M0.00,49.98 C157.73,-46.86 360.32,179.13 501.41,79.45 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path>
           </svg>
         </div>
+
+
     </header>
 <script>
 document.getElementById("btnMenu").addEventListener('click',ocultar);
 
 let logo=document.getElementById("logo");
+let titulo_gestion = document.getElementById("titulo_gestion");
 
 function ocultar(){
   if(logo.style.display === "none"){
     logo.style.display="block";
+    titulo_gestion.style.display="block";
   }else{
     logo.style.display="none";
+    titulo_gestion.style.display="none";
   }
 }
 </script> 

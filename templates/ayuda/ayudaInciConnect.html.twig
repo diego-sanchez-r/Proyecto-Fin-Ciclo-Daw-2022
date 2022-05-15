@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NoticiaController!{% endblock %}
+
+{% block body %}
+    {%include 'menu.html.twig' %}
+          <main class="flex-shrink-0">
+      <!-- About section one-->
+            <section class="py-3 bg-light" id="scroll-target">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6"><a href="/imagenes/img_incidencias/" data-lightbox="photos" title="Zoom"><img class="img-fluid rounded mb-5 mb-lg-0" src="/imagenes/img_incidencias/" alt="..." /></div></a>
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder">titulo</h2>
+                            <p class="lead fw-normal text-muted mb-0">descripcion</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- About section two-->
+            <h2 class="titulo">Ubicación</h2>
+            <section class="py-3">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6 order-first order-lg-last"></div>
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder" id="town" ></h2>
+                            <p class="lead fw-normal text-muted mb-0" id="display_name"></p>
+                            <button class="btn btn-success rounded-pill">dasf</button>
+                            <button class="btn btn-success rounded-pill">sdfasf</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+      </main>
+    {%include 'footer.html.twig' %} 
+{% endblock %}
+
