@@ -5,6 +5,45 @@
 {% block body %}
     {%include 'menu.html.twig' %}
     <h2 class="titulo">Noticias y Alertas</h2>
+     {% if app.user.rolUsuario == "admin_zona" %}
+      <link rel="stylesheet" href="/css/style_Form_Validar.css" />
+      <script src="/js/Validar_Form.js"></script> 
+    <h2 class="text-center">
+        <a class="btn btn-primary m-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Nueva Noticia
+        </a>
+    </h2>
+    <div class="collapse" id="collapseExample">
+        <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form id="regForm">
+                    <h1 id="register">Nueva Noticia</h1>
+                    <div class="all-steps" id="all-steps"> <span class="step"><i class="fa fa-user"></i></span> <span class="step"><i class="fa fa-map-marker"></i></span> <span class="step"><i class="fa fa-shopping-bag"></i></span> <span class="step"><i class="fa fa-car"></i></span> <span class="step"><i class="fa fa-spotify"></i></span> <span class="step"><i class="fa fa-mobile-phone"></i></span> </div>
+                    <div class="tab">
+                        <h6>Escribe el título:</h6>
+                        <p><input placeholder="Título..." oninput="this.className = ''" name="titulo"></p>
+                    </div>
+                    <div class="tab">
+                        <h6>Escribe la descripción:</h6>
+                        <p><input placeholder="Descripción..." oninput="this.className = ''" name="descripcion"></p>    
+                    </div>
+                    <div class="tab">
+                        <h6>Subir imagen:</h6>
+                        <p><input type="file" placeholder="Favourite Song" oninput="this.className = ''" name="imagen"></p>
+                    </div>
+                    <div class="tab" id="text-message"><br>
+                        <input type="submit" name="Confirmar" class="btn btn-outline-primary">
+                    </div><br>
+                    <div style="overflow:auto;" id="nextprevious">
+                        <div style="float:right;"> <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fa fa-angle-double-left"></i></button> <button type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fa fa-angle-double-right"></i></button> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+        {% endif %}
 <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
