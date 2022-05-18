@@ -10,6 +10,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Comentario;
 use App\Entity\Usuario;
 use App\Entity\Incidencia;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class ComentarioController extends AbstractController
 {
     #[Route('/comentario', name: 'app_comentario')]
@@ -46,6 +48,28 @@ class ComentarioController extends AbstractController
         }
     }
     
+    /**
+     * @Route("/comentario/nuevoAjax",options={"expose"=true}, name="add_comentario_ajax")
+    */
+    public function comentar(Request $request,ManagerRegistry $doctrine): Response {
+        if($request->isXmlHttpRequest()){
+            $comentario2 = new Comentario();
+            $id_inciden = $request->request->get( key: 'id');
+            $texto_ajax = $request->request->get( key: 'texto');
+            $repositorio3 = $doctrine->getRepository(Incidencia::class);
+            $inciajax = $repositorio3->find($id_inciden);
+            $comentario2->setTexto($texto_ajax);
+            $comentario2->setIncidencia($inciajax);
+            $comentario2->setUsuario($this->getUser());
+            $comentario2->setFechaCreacion(new \DateTime());
+            $usuario = $this->getUser();
+            $em = $doctrine->getManager();
+            $em->persist($comentario2);
+            $em->flush();
+           
+            return new JsonResponse(['comentario'=> $comentario2->getTexto(),'usuarioNombre'=> $usuario->getNombre(),'usuarioapellidos'=> $usuario->getApellidos()]);
+        }
+    }
     
     
 }

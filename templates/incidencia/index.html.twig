@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="/js/ajax-comentarios.js"></script> 
     <style>
         .contenedor {
             padding: 60px;
@@ -77,15 +78,13 @@
                                     </div>
                                     <br>
                                 {%  endfor %}
-                            <form action="{{ path("add_comentario")}}" method="post">
                                     <div class="input-group">
                                         <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
-                                        <input type="text" name="texto" class="form-control" placeholder="Comentar..."/>
-                                        <button class="btn btn-success" type="submit">
+                                        <input type="text" name="texto" id="comentario{{incidencia.id}}" class="form-control" placeholder="Comentar..."/>
+                                        <button class="btn btn-success" onclick="comentar({{incidencia.id}})">
                                             <i class="fa-solid fa-arrow-up-right-from-square"></i> Enviar
                                         </button>
                                     </div>
-                            </form>
                             </div>
                         </div>
                     </div>
@@ -105,5 +104,7 @@
         </div>
     </div>
 </div>
-    {%include 'footer.html.twig' %}            
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    {%include 'footer.html.twig' %}  
 {% endblock %}
