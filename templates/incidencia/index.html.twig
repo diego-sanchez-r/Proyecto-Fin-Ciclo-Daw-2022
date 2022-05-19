@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
-    <script src="/js/ajax-comentarios.js"></script> 
+    
     <style>
         .contenedor {
             padding: 60px;
@@ -25,6 +25,7 @@
                 <span class="text-success">Administrador de Zona</span>
                 <div>Estado:<i class="fa-solid fa-square" style="color:yellow;"></i> Iniciada <i class="fa-solid fa-square" style="color:red"></i> En proceso <i class="fa-solid fa-square" style="color: green;"></i> Resuelto</div>
             {% endif %}
+            
             
             {% for incidencia in mis_incidencias %}
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
@@ -71,13 +72,14 @@
                         <div class="offcanvas-body">
                             <div>
                                 {% for comentario in incidencia.comentarios %}
-                                    <div class="foto_usuarioComentario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }});" ></div>
+                                    <div class="foto_usuarioComentario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }})" ></div>
                                     <div class="contenido rounded-pill">
                                     <div class="nombreUsuComentarios fw-bold">{{ app.user.nombre }} {{ app.user.apellidos }}<br></div>
                                     <div class="comentario" >{{comentario.texto}}</div>
                                     </div>
                                     <br>
                                 {%  endfor %}
+                                <div id="nuevo{{incidencia.id}}"></div>
                                     <div class="input-group">
                                         <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
                                         <input type="text" name="texto" id="comentario{{incidencia.id}}" class="form-control" placeholder="Comentar..."/>
@@ -104,6 +106,7 @@
         </div>
     </div>
 </div>
+    <script src="/js/ajax-comentarios.js"></script> 
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     {%include 'footer.html.twig' %}  

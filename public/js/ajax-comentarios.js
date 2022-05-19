@@ -3,6 +3,7 @@
 function comentar(id){
     var Ruta = Routing.generate('add_comentario_ajax');
     let comentarioValue = document.getElementById("comentario"+id).value;
+    let nuevoComentario = document.getElementById("nuevo"+id);
     $.ajax({
        type:'POST',
        url: Ruta,
@@ -10,7 +11,12 @@ function comentar(id){
        async: true,
        dataType: "json",
        success: function(data){
-          console.log(data['usuarioNombre']+data['usuarioapellidos']+data['comentario']);
+          nuevoComentario.innerHTML = "<div class='foto_usuarioComentario' style='background-image: url(/imagenes/img_users/"+data['usuarioimagen']+")'></div>"+
+                  "<div class='contenido rounded-pill'>"+
+                  "<div class='nombreUsuComentarios fw-bold'>"+data['usuarioNombre']+" "+data['usuarioapellidos']+"<br></div>"+
+                  "<div class='comentario' >"+data['comentario']+"</div>"+
+                  "</div>"+
+                  "<br/>";
        }
     });
 }

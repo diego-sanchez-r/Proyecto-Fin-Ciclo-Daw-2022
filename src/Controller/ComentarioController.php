@@ -67,7 +67,7 @@ class ComentarioController extends AbstractController
             $em->persist($comentario2);
             $em->flush();
            
-            return new JsonResponse(['comentario'=> $comentario2->getTexto(),'usuarioNombre'=> $usuario->getNombre(),'usuarioapellidos'=> $usuario->getApellidos()]);
+            return new JsonResponse(['comentario'=> $comentario2->getTexto(),'usuarioNombre'=> $usuario->getNombre(),'usuarioapellidos'=> $usuario->getApellidos(),'usuarioimagen'=> $usuario->getImagen()]);
         }
     }
     
