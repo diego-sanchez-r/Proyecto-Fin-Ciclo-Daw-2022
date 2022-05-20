@@ -79,7 +79,9 @@
                                     </div>
                                     <br>
                                 {%  endfor %}
-                                <div id="nuevo{{incidencia.id}}"></div>
+                                <div id="nuevo{{incidencia.id}}">
+                                </div>
+                                
                                     <div class="input-group">
                                         <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
                                         <input type="text" name="texto" id="comentario{{incidencia.id}}" class="form-control" placeholder="Comentar..."/>
