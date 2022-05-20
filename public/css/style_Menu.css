@@ -116,13 +116,14 @@ header .textos-header{
 .nombreUsuComentarios{
     color: black;
     font-size: xx-small !important;
-    margin-left: 10px;
+    margin-left: 18px;
 }
 
 .comentario{
     width: auto;
     font-size: medium !important;
-    margin-left: 15px
+    margin-left: 15px;
+    overflow: auto;
 }
 .contenido{
    margin-left: 35px;
