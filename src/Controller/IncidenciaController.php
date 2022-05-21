@@ -94,7 +94,7 @@ class IncidenciaController extends AbstractController
             ->add("imagen", FileType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Por favor, elija una foto de perfil.',
+                        'message' => 'Por favor, elija una foto para la incidencia.',
                     ]),
                     new File([
                         'maxSize' => '1024k',

@@ -17,7 +17,7 @@
         <div class="container mt-5">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-8">
-                <form id="regForm">
+                {{ form_start(form_noticia,{'attr': {'id': 'regForm'}}) }}
                     <h1 id="register">Nueva Noticia</h1>
                     <div class="all-steps" id="all-steps"> <span class="step"><i class="fa fa-user"></i></span> <span class="step"><i class="fa fa-map-marker"></i></span> <span class="step"><i class="fa fa-shopping-bag"></i></span> <span class="step"><i class="fa fa-car"></i></span> <span class="step"><i class="fa fa-spotify"></i></span> <span class="step"><i class="fa fa-mobile-phone"></i></span> </div>
                     <div class="tab">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="tab">
                         <h6>Subir imagen:</h6>
-                        <p><input type="file" placeholder="Favourite Song" oninput="this.className = ''" name="imagen"></p>
+                        <p>{{ form_row(form_noticia.imagen) }}</p>
                     </div>
                     <div class="tab" id="text-message"><br>
                         <input type="submit" name="Confirmar" class="btn btn-outline-primary">
@@ -38,11 +38,12 @@
                     <div style="overflow:auto;" id="nextprevious">
                         <div style="float:right;"> <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fa fa-angle-double-left"></i></button> <button type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fa fa-angle-double-right"></i></button> </div>
                     </div>
-                </form>
+                    {{ form_end(form_noticia) }}
             </div>
         </div>
     </div>
     </div>
+      <br><br>
         {% endif %}
 <div class="album py-5 bg-light">
     <div class="container">
