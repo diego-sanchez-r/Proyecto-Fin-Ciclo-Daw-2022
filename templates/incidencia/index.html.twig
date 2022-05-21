@@ -25,14 +25,28 @@
                 <span class="text-success">Administrador de Zona</span>
                 <div>Estado:<i class="fa-solid fa-square" style="color:yellow;"></i> Iniciada <i class="fa-solid fa-square" style="color:red"></i> En proceso <i class="fa-solid fa-square" style="color: green;"></i> Resuelto</div>
             {% endif %}
-            
-            
+
             {% for incidencia in mis_incidencias %}
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                     <div class="bg-white rounded shadow-sm border border-1">
-                        <div class="w-100 bg-secondary text-white text-center rounded-3 {% if incidencia.estado == "Iniciada" %}bg-warning{% endif %}{% if incidencia.estado == "En proceso" %}bg-danger{% endif %}{% if incidencia.estado == "Resuelto" %}bg-success{% endif %}">
+                        <div class="w-100 bg-secondary text-white text-center rounded-3 {% if app.user.rolUsuario == "admin_zona" %} {% if incidencia.estado == "Iniciada" %}bg-warning{% endif %}{% if incidencia.estado == "En proceso" %}bg-danger{% endif %}{% if incidencia.estado == "Resuelto" %}bg-success{% endif %}{% endif %}">
                             {{incidencia.fechaCreacion | date("d/m/Y")}}
-                            {% if incidencia.estado == "Resuelto" %}<a href="" class="text-decoration-none text-white" title="Ocultar Incidencia"><i class="fa-solid fa-eye-slash"></i></a>{% endif %}
+                            {% if incidencia.estado == "Resuelto" %}<a href="" class="text-decoration-none text-white " title="Ocultar Incidencia"><i class="fa-solid fa-eye-slash"></i></a>{% endif %}
+                            {% if incidencia.estado == "En proceso" %}<a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#collapseExample{{incidencia.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" title="Cambiar Estado"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}
+                            {% if incidencia.estado == "Iniciada" %}<a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#collapseExample{{incidencia.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" title="Cambiar Estado"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}
+                        </div>
+                        <div class="collapse" id="collapseExample{{incidencia.id}}">
+                            <form action="{{ path("edit_estado",{id_in:incidencia.id}) }}" method="post">      
+                          <div class="input-group">
+                              <select class="form-select form-select-sm" name="estado">
+                                  <option value="Iniciada" class="bg-warning">Iniciada</option>
+                                  <option value="En proceso" class="bg-danger">En proceso</option>
+                                  <option value="Resuelto" class="bg-success">Resuelto</option>
+                              </select>
+                              <button type="sumbit" class="btn btn btn-outline-dark bg-gradien">Cambiar Estado</button>
+                          </div>
+                        </form>
+                    
                         </div>
                         <a href="/imagenes/img_incidencias/{{incidencia.imagen}}" data-lightbox="photos" title="Zoom">
                             <img class="img-fluid card-img-top rounded-2" src="/imagenes/img_incidencias/{{incidencia.imagen}}"  style="height: 250px !important;">
@@ -96,9 +110,27 @@
                         <div class="offcanvas-header">
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
+                        <script>
+                            fetch("https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={{ incidencia.latitud }}&lon={{ incidencia.longitud }}")
+                            .then(function(response) {
+                                // Si todo sale bien en la promesa se devuelve el json de la respuesta
+                                return response.json();
+                            })
+                            .then(function(myJson) {
+                                let town = document.getElementById('town{{incidencia.id}}');
+                                let display_name = document.getElementById('display_name{{incidencia.id}}');
+                                town.innerHTML = "<i class='fa-solid fa-location-dot text-danger'> </i> "+myJson.address.town+" ("+myJson.address.postcode+")";
+                                display_name.innerHTML = " "+myJson.display_name+" ";
+
+                            });
+                        </script>
                         <div class="offcanvas-body">
                             <div>
-                                <iframe class="card-img-top" src='https://maps.google.com/maps?q={{ incidencia.latitud }},{{ incidencia.longitud }}&hl=es&z=14&amp;output=embed' height="200px" ></iframe>
+                                <iframe class="card-img-top" src='https://maps.google.com/maps?q={{ incidencia.latitud }},{{ incidencia.longitud }}&hl=es&z=14&amp;output=embed' height="300px" ></iframe>
+                                <h2 class="fw-bolder" id="town{{incidencia.id}}" ></h2>
+                                <p class="lead fw-normal text-muted mb-0" id="display_name{{incidencia.id}}"></p>
+                                <button class="btn btn-success rounded-pill" title="Latitud">Lat: {{ incidencia.latitud }}</button>
+                                <button class="btn btn-success rounded-pill" title="Longitud">Long: {{ incidencia.longitud }}</button>
                             </div>
                         </div>
                     </div>

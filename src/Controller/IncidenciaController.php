@@ -222,7 +222,29 @@ class IncidenciaController extends AbstractController
         ]);
     }
     
-    
+    /**
+     * @Route("/incidencia/cambiar/estado/{id_in<\d+>}", name="edit_estado")
+    */
+    public function cambiarEstado(Request $request, ManagerRegistry $doctrine): Response {
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
+      if ($request->isMethod('POST')) {
+            $incidencia3 = new Incidencia();
+            $estado = $request->request->get('estado');
+            //Buscar en la base de datos la incidencia
+            $repositorio3 = $doctrine->getRepository(Incidencia::class);
+            $id = $request->get('id_in');
+            $incidencia3 = $repositorio3->find($id);
+            $incidencia3->setEstado($estado);
+            $em = $doctrine->getManager();
+            $em->persist($incidencia3);
+            $em->flush();
+            
+            $this->addFlash("aviso", "Cambio Estado Incidencia");
+            return $this->redirectToRoute("app_incidencia");
+        }
+    }
     
     
 }
