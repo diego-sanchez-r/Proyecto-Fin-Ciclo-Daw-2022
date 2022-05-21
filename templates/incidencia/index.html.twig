@@ -30,8 +30,9 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                     <div class="bg-white rounded shadow-sm border border-1">
                         <div class="w-100 bg-secondary text-white text-center rounded-3 {% if app.user.rolUsuario == "admin_zona" %} {% if incidencia.estado == "Iniciada" %}bg-warning{% endif %}{% if incidencia.estado == "En proceso" %}bg-danger{% endif %}{% if incidencia.estado == "Resuelto" %}bg-success{% endif %}{% endif %}">
+                            {% if incidencia.estado == "Resuelto" %}<a href="{{ path("ocultar_incidencia",{id:incidencia.id}) }}" class="text-decoration-none text-white " title="Ocultar Incidencia"><i class="fa-solid fa-eye-slash"></i></a>{% endif %}
                             {{incidencia.fechaCreacion | date("d/m/Y")}}
-                            {% if incidencia.estado == "Resuelto" %}<a href="" class="text-decoration-none text-white " title="Ocultar Incidencia"><i class="fa-solid fa-eye-slash"></i></a>{% endif %}
+                            {% if incidencia.estado == "Resuelto" %}<a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#collapseExample{{incidencia.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" title="Cambiar Estado"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}
                             {% if incidencia.estado == "En proceso" %}<a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#collapseExample{{incidencia.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" title="Cambiar Estado"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}
                             {% if incidencia.estado == "Iniciada" %}<a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#collapseExample{{incidencia.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" title="Cambiar Estado"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}
                         </div>
