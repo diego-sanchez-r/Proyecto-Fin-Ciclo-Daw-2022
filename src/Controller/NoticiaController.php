@@ -131,4 +131,20 @@ class NoticiaController extends AbstractController
             ]);
         }
     }
+    
+    /**
+     *@Route("/noticia/borrar/{id<\d+>}",name="borrar_noticia")
+     */
+    public function borrar(Noticias $noticia, ManagerRegistry $doctrine): Response{
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
+        
+        $em = $doctrine->getManager();
+        $em->remove($noticia);
+        $em->flush();
+        
+        $this->addFlash("aviso", "Noticia borrada");
+        return $this->redirectToRoute("add_noticia");
+    }
 }

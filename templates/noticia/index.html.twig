@@ -58,6 +58,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <a href="{{ path("ver_noticia",{id:noticia.id})}}"><button type="button" class="btn btn-sm btn-outline-secondary">Ver</button></a>
+                    {% if app.user.rolUsuario == "admin_zona" %}<a href="{{ path("borrar_noticia",{id:noticia.id})}}"><button type="button" class="btn btn-sm btn-outline-danger">Borrar</button></a>{% endif %}
                 </div>
                 <small class="text-muted">{{noticia.fechaCreacion | date("d/m/Y")}}</small>
               </div>
