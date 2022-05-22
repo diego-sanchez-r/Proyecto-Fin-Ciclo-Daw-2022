@@ -89,12 +89,31 @@ class UsuarioController extends AbstractController
         ]);
     }
     
+    
     /**
-     * @Route("/usuario/cambiar/foto", name="edit_foto")
+     * @Route("/usuario/editar/perfil", name="edit_perfil")
     */
     public function cambiarFotoPerfil(Request $request, ManagerRegistry $doctrine): Response {
         if($this->getUser() === null){
             return $this->redirectToRoute("login");
+        }
+        
+        $usuario = $this->getUser();
+        
+       if ($request->isMethod('POST')) {
+            $email = $request->request->get('email');
+            $telefono = $request->request->get('telefono');
+            $codigo = $request->request->get('codigo');
+            //Cambiar los datos    
+            $usuario->setEmail($email);
+            $usuario->setTelefono($telefono);
+            $usuario->setCodigo($codigo);
+            $em = $doctrine->getManager();
+            $em->persist($usuario);
+            $em->flush();
+            
+            $this->addFlash("aviso", "Perfil Editado");
+            return $this->redirectToRoute("app_usuario");
         }
         
         
