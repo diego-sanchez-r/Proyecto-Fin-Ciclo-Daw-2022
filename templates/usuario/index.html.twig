@@ -10,7 +10,7 @@
       crossorigin="anonymous"></script>
     <style>
         .contenedor {
-            width: 70%;
+            width: 90%;
             max-width: 100%;
             margin: 0 auto; 
         }
@@ -38,7 +38,7 @@
                             <div class="col-sm-4 bg-c-lite-green user-profile">
                                 <div class="card-block text-center text-white">
                                     <div class="m-b-25">
-                                        <img id="foto_usuario_cambio" title="Cambiar Imagen"  src="/imagenes/img_users/{{ app.user.imagen }}" class="img-radius" height="80px" alt="..."><a href="{{ path("logout") }}" title="Cerrar Sesión" style="font-size: x-small; text-decoration: none;" >Salir <i class="fa-solid fa-right-from-bracket"></i></a> </div>
+                                    <img id="foto_usuario_cambio" title="Cambiar Imagen"  src="/imagenes/img_users/{{ app.user.imagen }}" class="img-radius" height="90px" width="120px" alt="..."><br><a href="{{ path("logout") }}" title="Cerrar Sesión" style="font-size: x-small; text-decoration: none;" >Salir <i class="fa-solid fa-right-from-bracket"></i></a> </div>
                                     {{ form_start(form_foto,{'attr': {'id': 'formulario_actualizar_foto'}}) }}
                                     <input type="submit">
                                     {{ form_end(form_foto) }}
