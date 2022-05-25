@@ -250,11 +250,13 @@ class IncidenciaController extends AbstractController
     /**
      *@Route("/incidencia/ocultar/{id<\d+>}",name="ocultar_incidencia")
      */
-    public function ocultar(Incidencia $incidencia, ManagerRegistry $doctrine): Response{
+    public function ocultar(ManagerRegistry $doctrine,Request $request): Response{
         if($this->getUser() === null){
             return $this->redirectToRoute("login");
         }
-        
+        $id = $request->get('id');
+        $repositorio = $doctrine->getRepository(Incidencia::class);
+        $incidencia = $repositorio->find($id);
         $em = $doctrine->getManager();
         $em->remove($incidencia);
         $em->flush();

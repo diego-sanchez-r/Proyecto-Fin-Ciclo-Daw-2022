@@ -37,8 +37,29 @@
                                 <p class="small mb-0"><span class="font-weight-bold">Tipología:<small class="text-muted">{{incidenciaSeleccionada.averia.nombre}}</small></span></p>
                                 <div class="badge badge-danger px-3 rounded-pill font-weight-normal bg-warning"><img src="/imagenes/iconos/{{incidenciaSeleccionada.averia.nombre}}.svg" height="18px" alt="..." /></div>
                             </div><br>
-                            <div class="w-100 bg-secondary text-white text-center rounded-3">
-                                {{incidenciaSeleccionada.fechaCreacion | date("d/m/Y")}}
+                            {% if app.user.rolUsuario == "admin_zona" %}
+                                <span class="text-success">Administrador de Zona</span>
+                                <div>Estado:<i class="fa-solid fa-square" style="color:yellow;"></i> Iniciada <i class="fa-solid fa-square" style="color:red"></i> En proceso <i class="fa-solid fa-square" style="color: green;"></i> Resuelto</div>
+                            {% endif %}
+                            <div class="w-100 bg-secondary text-white text-center rounded-3
+                            {% if app.user.rolUsuario == "admin_zona" %} {% if incidenciaSeleccionada.estado == "Iniciada" %}bg-warning{% endif %}{% if incidenciaSeleccionada.estado == "En proceso" %}bg-danger{% endif %}{% if incidenciaSeleccionada.estado == "Resuelto" %}bg-success{% endif %}{% endif %}">
+                            {% if app.user.rolUsuario == "admin_zona" %}{% if incidenciaSeleccionada.estado == "Resuelto" %}<a href="{{ path("ocultar_incidencia",{id:incidenciaSeleccionada.id}) }}" class="text-decoration-none text-white " title="Ocultar Incidencia"><i class="fa-solid fa-eye-slash"></i></a>{% endif %}{% endif %}
+                            {% if app.user.rolUsuario == "admin_zona" %}{% if incidenciaSeleccionada.estado == "Resuelto" %}<a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#collapseExample{{incidenciaSeleccionada.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" title="Cambiar Estado"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}{% endif %}
+                            {% if app.user.rolUsuario == "admin_zona" %}{% if incidenciaSeleccionada.estado == "En proceso" %}<a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#collapseExample{{incidenciaSeleccionada.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" title="Cambiar Estado"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}{% endif %}
+                            {% if app.user.rolUsuario == "admin_zona" %}{% if incidenciaSeleccionada.estado == "Iniciada" %}<a class="text-decoration-none text-white" data-bs-toggle="collapse" href="#collapseExample{{incidenciaSeleccionada.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" title="Cambiar Estado"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %}{% endif %}
+                            {{incidenciaSeleccionada.fechaCreacion | date("d/m/Y")}}
+                            </div>
+                            <div class="collapse" id="collapseExample{{incidenciaSeleccionada.id}}">
+                                <form action="{{ path("edit_estado",{id_in:incidenciaSeleccionada.id}) }}" method="post">      
+                                    <div class="input-group">
+                                      <select class="form-select form-select-sm" name="estado">
+                                          <option value="Iniciada" class="bg-warning">Iniciada</option>
+                                          <option value="En proceso" class="bg-danger">En proceso</option>
+                                          <option value="Resuelto" class="bg-success">Resuelto</option>
+                                      </select>
+                                      <button type="sumbit" class="btn btn btn-outline-dark bg-gradien">Cambiar Estado</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         </div>

@@ -19,7 +19,7 @@
     {% set contadorResiduos = 0 %}{% set contadorMobiliario_Urbano = 0 %}{% set contadorParques_y_Jardines = 0 %}
     {% set contadorSenalizacion = 0 %}{% set contadorMantenimiento = 0 %}{% set contadorAceras_y_Calzadas = 0 %}
     {% set contadorVandalismo = 0 %}{% set contadorPlagas_de_insectos_y_otros = 0 %}{% set contadorOtras_Averias = 0 %}
-    {% set contadorTotal = 0 %}
+     {% set contadorTotal = 0 %}
         {% for incidencia in mis_incidencias %}
             {% set contadorTotal = contadorTotal + 1 %}
             {% if incidencia.averia.id == 1 %}{% set contadorElectrica = contadorElectrica + 1 %}{% endif %}

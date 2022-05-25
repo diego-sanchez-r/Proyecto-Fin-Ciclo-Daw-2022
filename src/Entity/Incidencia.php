@@ -49,7 +49,7 @@ class Incidencia
     #[ORM\OneToMany(mappedBy: 'incidencia', targetEntity: Comentario::class)]
     private $comentarios;
 
-    #[ORM\OneToOne(targetEntity: TipoAveria::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: TipoAveria::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $averia;
 
