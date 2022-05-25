@@ -178,8 +178,9 @@ header .textos-header{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
-    font-size: small;
+    font-size: xx-small;
 }
 
 .hover-galeria2 img{
