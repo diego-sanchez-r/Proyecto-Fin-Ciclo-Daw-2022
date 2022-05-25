@@ -58,8 +58,9 @@
           <div class="card shadow-sm">
             <img class="bd-placeholder-img card-img-top rounded-2" src="/imagenes/img_noticias/{{noticia.imagen}}" width="100%" height="225">
             <div class="card-body">
-            <h5 class="card-title">{{noticia.titulo}}</h5>
-              <p class="card-text">{{noticia.descripcion}}</p>
+            <h5 class="card-title text-danger">{{noticia.titulo}}</h5>
+            <hr>
+              <p class="card-text fw-bold">{{noticia.descripcion}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <a href="{{ path("ver_noticia",{id:noticia.id})}}"><button type="button" class="btn btn-sm btn-outline-secondary">Ver</button></a>

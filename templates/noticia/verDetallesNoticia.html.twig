@@ -29,7 +29,7 @@
                             <article>
                                 <!-- Post header-->
                                     <!-- Post title-->
-                                    <h1 class="fw-bolder mb-1">{{noticiaSeleccionada.titulo}}</h1>
+                                    <h1 class="fw-bolder mb-1 text-danger">{{noticiaSeleccionada.titulo}}</h1>
                                     <!-- Post meta content-->
                                     <div class="text-muted fst-italic mb-2">{{noticiaSeleccionada.fechaCreacion | date("M d, Y")}}</div>
                                     <!-- Post categories-->
@@ -39,8 +39,8 @@
                                 <img class="img-fluid rounded" src="/imagenes/img_noticias/{{noticiaSeleccionada.imagen}}" alt="..."/>
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    <h2 class="fw-bolder mb-4 mt-5">{{noticiaSeleccionada.titulo}}</h2>
-                                    <p class="fs-5 mb-4">{{noticiaSeleccionada.descripcion}}</p>
+                                    <h2 class="fw-bolder mb-4 mt-5 text-danger">{{noticiaSeleccionada.titulo}}</h2>
+                                    <p class="fs-5 mb-4 fw-bold">{{noticiaSeleccionada.descripcion}}</p>
                                 </section>
                             </article>
                         </div>
