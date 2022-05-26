@@ -146,7 +146,10 @@
                 <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <a href="{{ path("ver_incidencia",{id:incidencia.id}) }}" title="Ver Detalles"><button type="button" class="btn btn-sm btn-outline-secondary">Ver</button></a>
-                    {% if app.user == incidencia.usuario %}<a href="{{ path("ocultar_incidencia",{id:incidencia.id}) }}" class="text-decoration-none text-white " title="Ocultar Incidencia"><button type="button" class="btn btn-sm btn-outline-danger">Borrar</button></a>{% endif %}
+                    {% if app.user == incidencia.usuario %}
+                        <button type="button" onclick="valida()" class="btn btn-sm btn-outline-danger">Borrar</button>
+                        <script>function valida(){if (confirm('¿Estás SEGURO de que quieres ELIMINAR esta incidencia?')){window.location="{{ path("ocultar_incidencia",{id:incidencia.id}) }}";}}</script>
+                    {% endif %}
                 </div>
                 <small class="text-muted">{{incidencia.fechaCreacion | date("d M, Y")}}</small>
                 </div>
