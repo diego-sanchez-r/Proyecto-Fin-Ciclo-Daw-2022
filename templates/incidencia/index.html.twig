@@ -6,231 +6,125 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
-    
-    <style>
-        .contenedor {
-            padding: 60px;
-            width: 70%;
-            max-width: 100%;
-            margin: 0 auto; 
-        }
-    a {
-        text-decoration: none;
-    }
+    <link rel="stylesheet" href="/css/style_incidencias.css" />
 
-    /* Card Styles */
-
-    .card-sl {
-        border-radius: 8px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .card-image img {
-        max-height: 100%;
-        max-width: 100%;
-        border-radius: 8px 8px 0px 0;
-    }
-
-    .card-action {
-        position: relative;
-        float: right;
-        margin-top: -25px;
-        margin-right: 20px;
-        z-index: 2;
-        color: #DC3545;
-        background: #fff;
-        border-radius: 100%;
-        padding: 15px;
-        font-size: 15px;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .card-action:hover {
-        color: #fff;
-        background: #DC3545;
-        -webkit-animation: pulse 1.5s infinite;
-    }
-
-    .card-heading {
-        font-size: 18px;
-        font-weight: bold;
-        background: #fff;
-        padding: 10px 15px;
-    }
-
-    .card-text {
-        padding-left:15px;
-        padding-right:15px;
-        background: #fff;
-        font-size: 14px;
-        color: #636262;
-    }
-
-    .card-button {
-        display: flex;
-        justify-content: center;
-        padding: 10px 0;
-        width: 100%;
-        background-color: #1F487E;
-        color: #fff;
-        border-radius: 0 0 8px 8px;
-    }
-
-    .card-button:hover {
-        text-decoration: none;
-        background-color: #1D3461;
-        color: #fff;
-
-    }
-
-    @-webkit-keyframes pulse {
-        0% {
-            -moz-transform: scale(0.9);
-            -ms-transform: scale(0.9);
-            -webkit-transform: scale(0.9);
-            transform: scale(0.9);
-        }
-
-        70% {
-            -moz-transform: scale(1);
-            -ms-transform: scale(1);
-            -webkit-transform: scale(1);
-            transform: scale(1);
-            box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
-        }
-
-        100% {
-            -moz-transform: scale(0.9);
-            -ms-transform: scale(0.9);
-            -webkit-transform: scale(0.9);
-            transform: scale(0.9);
-            box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
-        }
-    }
-    </style>
     {%include 'menu.html.twig' %}
-<h2 class="titulo">Incidencias de la Zona</h2>
-<div class="container-fluid">
-    <div class="px-lg-5">
-        <div>Estado:<i class="fa-solid fa-square" style="color:yellow;"></i> Iniciada <i class="fa-solid fa-square" style="color:red"></i> En proceso <i class="fa-solid fa-square" style="color: green;"></i> Resuelto</div>
-        <div class="row">
-            {% for incidencia in mis_incidencias %}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="card-sl">
-                    <div class="">
-                        <div class="w-100 bg-white text-white text-center rounded-3" style="height:10px">
-                           -
+        <h2 class="titulo">Incidencias de la Zona</h2>
+        <div class="container-fluid">
+            <div class="px-lg-5">
+                {%include 'filtros.html.twig' %}
+                <div>Estado:<i class="fa-solid fa-square" style="color:yellow;"></i> Iniciada <i class="fa-solid fa-square" style="color:red"></i> En proceso <i class="fa-solid fa-square" style="color: green;"></i> Resuelto</div>
+                <div class="row" id="mySection">
+                    {% for incidencia in mis_incidencias %}
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="card-sl">
+                        <div class="">
+                            <div class="w-100 bg-white text-white text-center rounded-3" style="height:10px">
+                            -
+                            </div>
+                            <a href="/imagenes/img_incidencias/{{incidencia.imagen}}" data-lightbox="photos" title="Zoom">
+                                <img class="img-fluid card-img-top rounded-bottom" src="/imagenes/img_incidencias/{{incidencia.imagen}}"  style="height: 220px !important;">
+                            </a>
                         </div>
-                    <a href="/imagenes/img_incidencias/{{incidencia.imagen}}" data-lightbox="photos" title="Zoom">
-                            <img class="img-fluid card-img-top rounded-bottom" src="/imagenes/img_incidencias/{{incidencia.imagen}}"  style="height: 220px !important;">
-                    </a>
-                    </div>
-
-                    <a class="card-action" title="Ubicación" data-bs-toggle="offcanvas" 
-                       href="#offcanvasExample{{incidencia.id}}-{{incidencia.id}}" role="button" aria-controls="offcanvasExample">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </a>
-                    <div class="card-heading">
-                        <a href="{{ path("ver_incidencia",{id:incidencia.id}) }}"class="text-dark" title="Ver Detalles">{{ incidencia.titulo }}</a>
-                    </div>
-                    <div class="card-text">
-                        {{incidencia.descripcion}}<p style="font-size: xx-small;">Descripción</p>
-                    </div>
-                <div class="card-text">
-                       <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4 tipologia" style="background-color: #D9D9D9 !important;">
-                    <hr>
-                    <p class="small mb-0"><span class="font-weight-bold">Tipología:<small class="text-muted">{{incidencia.averia.nombre}}</small></span></p>
-                    <div class="badge badge-danger px-3 rounded-pill font-weight-normal bg-warning"><img src="/imagenes/iconos/{{incidencia.averia.nombre}}.svg" height="18px" alt="..." /></div>
-                </div>
-                <br>
-                <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <a href="{{ path("ver_incidencia",{id:incidencia.id}) }}" title="Ver Detalles"><button type="button" class="btn btn-sm btn-outline-secondary">Ver</button></a>
-                    {% if app.user == incidencia.usuario %}
-                        <button type="button" onclick="valida()" class="btn btn-sm btn-outline-danger">Borrar</button>
-                        <script>function valida(){if (confirm('¿Estás SEGURO de que quieres ELIMINAR esta incidencia?')){window.location="{{ path("ocultar_incidencia",{id:incidencia.id}) }}";}}</script>
-                    {% endif %}
-                </div>
-                <small class="text-muted">{{incidencia.fechaCreacion | date("d M, Y")}}</small>
-                </div>
-                <br>
-                Estado:{% if incidencia.estado == "Iniciada" %}<span class="text-warning">{{incidencia.estado}}</span>{% endif %}
-                {% if incidencia.estado == "En proceso" %}<span class="text-danger">{{incidencia.estado}}</span>{% endif %}
-                {% if incidencia.estado == "Resuelto" %}<span class="text-success">{{incidencia.estado}}</span>{% endif %}
-                </div>
-                <br>
-                    <a href="#offcanvasExample{{incidencia.id}}" data-bs-toggle="offcanvas" title="Todos los comentarios"  
-                       class="card-button text-decoration-none" role="button" aria-controls="offcanvasExample"> 
-                        <i class="fa-solid fa-comments"></i>Ver Comentarios
-                    </a>
-                </div>
-                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample{{incidencia.id}}" aria-labelledby="offcanvasExampleLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasExampleLabel"><i class="bi bi-chat-left-text"></i> Comentarios</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <a class="card-action" title="Ubicación" data-bs-toggle="offcanvas" 
+                            href="#offcanvasExample{{incidencia.id}}-{{incidencia.id}}" role="button" aria-controls="offcanvasExample">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </a>
+                        <div class="card-heading">
+                            <h4><a href="{{ path("ver_incidencia",{id:incidencia.id}) }}"class="text-dark" title="Ver Detalles"><b>{{ incidencia.titulo }}</b></a></h4>
                         </div>
-                        <div class="offcanvas-body">
-                            <div>
+                        <div class="card-text">
+                            {{incidencia.descripcion}}<p style="font-size: xx-small;">Descripción</p>
+                        </div>
+                        <div class="card-text">
+                             <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4 tipologia" style="background-color: #D9D9D9 !important;">
                                 <hr>
-                                {% for comentario in incidencia.comentarios %}
-                                    <div class="foto_usuarioComentario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }})" ></div>
-                                    <div class="contenido rounded-pill">
-                                    <div class="nombreUsuComentarios fw-bold">{{ app.user.nombre }} {{ app.user.apellidos }}<br></div>
-                                    <div class="comentario" >{{comentario.texto}}</div>
-                                    </div>
-                                    <br>
-                                {%  endfor %}
-                                <div id="nuevo{{incidencia.id}}">
+                                <p class="small mb-0"><span class="font-weight-bold"><h5><small class="text-muted">{{incidencia.averia.nombre}}</small></h5></span></p>
+                                <div class="badge badge-danger px-3 rounded-pill font-weight-normal bg-warning"><img src="/imagenes/iconos/{{incidencia.averia.nombre}}.svg" height="18px" alt="..." /></div>
+                            </div>
+                            <br>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{{ path("ver_incidencia",{id:incidencia.id}) }}" title="Ver Detalles"><button type="button" class="btn btn-sm btn-outline-secondary">Ver</button></a>
+                                    {% if app.user == incidencia.usuario %}<button type="button" onclick="valida()" class="btn btn-sm btn-outline-danger">Borrar</button><script>function valida(){if (confirm('¿Estás SEGURO de que quieres ELIMINAR esta incidencia?')){window.location="{{ path("ocultar_incidencia",{id:incidencia.id}) }}";}}</script>{% endif %}
                                 </div>
-                                
-                                    <div class="input-group">
-                                        <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
-                                        <input type="text" name="texto" id="comentario{{incidencia.id}}" class="form-control" placeholder="Comentar..."/>
-                                        <button class="btn btn-success" title="Comentar" onclick="comentar({{incidencia.id}})">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-                                            </svg> Enviar
-                                        </button>
+                                <small class="text-muted">{{incidencia.fechaCreacion | date("d M, Y")}}</small>
+                            </div>
+                            <br>
+                           <h6> Estado:{% if incidencia.estado == "Iniciada" %}<span class="text-warning">{{incidencia.estado}}</span>{% endif %}{% if incidencia.estado == "En proceso" %}<span class="text-danger">{{incidencia.estado}}</span>{% endif %}{% if incidencia.estado == "Resuelto" %}<span class="text-success">{{incidencia.estado}}</span>{% endif %}</h6>
+                        </div>
+                        <br>
+                            <a href="#offcanvasExample{{incidencia.id}}" data-bs-toggle="offcanvas" title="Todos los comentarios"  
+                                class="card-button text-decoration-none" role="button" aria-controls="offcanvasExample"> 
+                                <i class="fa-solid fa-comments"></i>Ver Comentarios
+                            </a>
+                        </div>
+                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample{{incidencia.id}}" aria-labelledby="offcanvasExampleLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasExampleLabel"><i class="bi bi-chat-left-text"></i> Comentarios</h5>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <div>
+                                        <hr>
+                                        {% for comentario in incidencia.comentarios %}
+                                            <div class="foto_usuarioComentario" style="background-image: url(/imagenes/img_users/{{ app.user.imagen }})" ></div>
+                                            <div class="contenido rounded-pill">
+                                            <div class="nombreUsuComentarios fw-bold">{{ app.user.nombre }} {{ app.user.apellidos }}<br></div>
+                                            <div class="comentario" >{{comentario.texto}}</div>
+                                            </div>
+                                            <br>
+                                        {%  endfor %}
+                                        <div id="nuevo{{incidencia.id}}"></div>
+                                            <div class="input-group">
+                                                <input type="text" name="id_inci" hidden value="{{incidencia.id}}" >
+                                                <input type="text" name="texto" id="comentario{{incidencia.id}}" class="form-control" placeholder="Comentar..."/>
+                                                <button class="btn btn-success" title="Comentar" onclick="comentar({{incidencia.id}})">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                                        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                                                    </svg> Enviar
+                                                </button>
+                                            </div>
                                     </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample{{incidencia.id}}-{{incidencia.id}}" aria-labelledby="offcanvasRightLabel">
-                        <div class="offcanvas-header">
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <script>
-                            fetch("https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={{ incidencia.latitud }}&lon={{ incidencia.longitud }}")
-                            .then(function(response) {
-                                // Si todo sale bien en la promesa se devuelve el json de la respuesta
-                                return response.json();
-                            })
-                            .then(function(myJson) {
-                                let town = document.getElementById('town{{incidencia.id}}');
-                                let display_name = document.getElementById('display_name{{incidencia.id}}');
-                                town.innerHTML = "<i class='fa-solid fa-location-dot text-danger'> </i> "+myJson.address.town+" ("+myJson.address.postcode+")";
-                                display_name.innerHTML = " "+myJson.display_name+" ";
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample{{incidencia.id}}-{{incidencia.id}}" aria-labelledby="offcanvasRightLabel">
+                                <div class="offcanvas-header">
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <script>
+                                    fetch("https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat={{ incidencia.latitud }}&lon={{ incidencia.longitud }}")
+                                    .then(function(response) {
+                                        // Si todo sale bien en la promesa se devuelve el json de la respuesta
+                                        return response.json();
+                                    })
+                                    .then(function(myJson) {
+                                        let town = document.getElementById('town{{incidencia.id}}');
+                                        let display_name = document.getElementById('display_name{{incidencia.id}}');
+                                        town.innerHTML = "<i class='fa-solid fa-location-dot text-danger'> </i> "+myJson.address.town+" ("+myJson.address.postcode+")";
+                                        display_name.innerHTML = " "+myJson.display_name+" ";
 
-                            });
-                        </script>
-                        <div class="offcanvas-body">
-                            <div>
-                                <iframe class="card-img-top" src='https://maps.google.com/maps?q={{ incidencia.latitud }},{{ incidencia.longitud }}&hl=es&z=14&amp;output=embed' height="300px" ></iframe>
-                                <h2 class="fw-bolder" id="town{{incidencia.id}}" ></h2>
-                                <p class="lead fw-normal text-muted mb-0" id="display_name{{incidencia.id}}"></p>
-                                <button class="btn btn-success rounded-pill" title="Latitud">Lat: {{ incidencia.latitud }}</button>
-                                <button class="btn btn-success rounded-pill" title="Longitud">Long: {{ incidencia.longitud }}</button>
+                                    });
+                                </script>
+                                <div class="offcanvas-body">
+                                    <div>
+                                        <iframe class="card-img-top" src='https://maps.google.com/maps?q={{ incidencia.latitud }},{{ incidencia.longitud }}&hl=es&z=14&amp;output=embed' height="300px" ></iframe>
+                                        <h2 class="fw-bolder" id="town{{incidencia.id}}" ></h2>
+                                        <p class="lead fw-normal text-muted mb-0" id="display_name{{incidencia.id}}"></p>
+                                        <button class="btn btn-success rounded-pill" title="Latitud">Lat: {{ incidencia.latitud }}</button>
+                                        <button class="btn btn-success rounded-pill" title="Longitud">Long: {{ incidencia.longitud }}</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                                
-                </div>   
-            {%  endfor %}
+                        </div>   
+                    {%  endfor %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-    <script src="/js/ajax-comentarios.js"></script> 
-    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        <script src="/js/ajax-comentarios.js"></script> 
+        <script src="/js/buscadorNombre.js"></script> 
+        <script src="/js/buscadorEstado.js"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     {%include 'footer.html.twig' %}  
 {% endblock %}
