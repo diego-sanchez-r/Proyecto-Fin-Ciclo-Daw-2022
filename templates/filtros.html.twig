@@ -1,10 +1,149 @@
 {# empty Twig template #}
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Incidencia ...">
+<style>
+.form_buscador{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: #929FBA;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+#myInput{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+    color: white;
+}
+
+.fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+.form_buscador:hover,
+.form_buscador:valid{
+    width: 200px;
+    cursor: pointer;
+}
+
+.form_buscador:hover #myInput,
+.form_buscador:valid #myInput{
+    display: block;
+    background: #929FBA;
+}
+
+.form_buscador:hover .fa,
+.form_buscador:valid .fa{
+    background: #929FBA;
+}
+
+
+.enlace {
+  display: none;
+  position: absolute;
+  top: 50px;
+  bottom:0;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  color: #929FBA;
+  text-align: center; 
+  width: 100%;
+}
+
+.form_buscador:valid .enlace {
+  display: block;
+}
+</style>
+
+<form class="form_buscador">
+    <a class="enlace" href="javascript:void(0)" id="clear-btn">Borrar</a>
+    
+    <input type="search" id="myInput" onkeyup="myFunction()" required><i class="fa fa-search" style="color:white"></i>
+</form><br>   
+ <div class="input-group">
 <select class="form-select form-select-sm" id="mySelect" onchange="myFunctionEstado()">
     <option value="Iniciada" class="bg-warning">Iniciada</option>
     <option value="En proceso" class="bg-danger">En proceso</option>
     <option value="Resuelto" class="bg-success">Resuelto</option>
 </select>
 <select class="form-select form-select-sm" id="mySelect2" onchange="myFunctionTipo()">
-    
 </select>
+ </div><br>
+ <div><b>Estado</b><br><i class="fa-solid fa-square" style="color:yellow;"></i> Iniciada <i class="fa-solid fa-square" style="color:red"></i> En proceso <i class="fa-solid fa-square" style="color: green;"></i> Resuelto</div>
+ <div><b>Tipología</b></br>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Eléctrica <img src="/imagenes/iconos/Electrica .svg" height="18px" alt="..." />
+    </div> 
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Gas <img src="/imagenes/iconos/Gas.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Agua <img src="/imagenes/iconos/Agua.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Teléfono <img src="/imagenes/iconos/Telefono.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Internet <img src="/imagenes/iconos/Internet.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Circulación <img src="/imagenes/iconos/Circulacion.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Residuos <img src="/imagenes/iconos/Residuos.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Mobiliario Urbano <img src="/imagenes/iconos/Mobiliario Urbano.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Parques y Jardines <img src="/imagenes/iconos/Parques y Jardines.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Señalizacion <img src="/imagenes/iconos/Señalizacion.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Mantenimiento <img src="/imagenes/iconos/Mantenimiento.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Aceras y Calzadas <img src="/imagenes/iconos/Aceras y Calzadas.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Vandalismo <img src="/imagenes/iconos/Aceras y Calzadas.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Plagas de insectos y otros <img src="/imagenes/iconos/Plagas de insectos y otros.svg" height="18px" alt="..." />
+    </div>
+    <div class="badge badge-danger px-3 rounded-pill bg-warning">
+        Otras Averias <img src="/imagenes/iconos/Otras Averias.svg" height="18px" alt="..." />
+    </div>
+    
+ </div><br>
+
+

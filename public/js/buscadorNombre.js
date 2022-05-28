@@ -1,5 +1,14 @@
-     function myFunction() {
-  var input, filter, section, div, h1, i;
+    var input, filter, section, div, h1, i;
+    const clearInput = () => {
+      const input = document.getElementById("myInput");
+      input.value = "";
+    };
+
+    const clearBtn = document.getElementById("clear-btn");
+    clearBtn.addEventListener("click", clearInput); 
+    
+    
+    function myFunction() {
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   section = document.getElementById("mySection");
