@@ -38,7 +38,7 @@
                         <div class="card-text">
                              <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4 tipologia" style="background-color: #D9D9D9 !important;">
                                 <hr>
-                                <p class="small mb-0"><span class="font-weight-bold"><h5><small class="text-muted">{{incidencia.averia.nombre}}</small></h5></span></p>
+                                <p class="small mb-0"><span class="font-weight-bold"><h5 style="display:none">{{incidencia.averia.id}}</h5><small class="text-muted">{{incidencia.averia.nombre}}</small></span></p>
                                 <div class="badge badge-danger px-3 rounded-pill font-weight-normal bg-warning"><img src="/imagenes/iconos/{{incidencia.averia.nombre}}.svg" height="18px" alt="..." /></div>
                             </div>
                             <br>
@@ -123,6 +123,7 @@
         <script src="/js/ajax-comentarios.js"></script> 
         <script src="/js/buscadorNombre.js"></script> 
         <script src="/js/buscadorEstado.js"></script>
+        <script src="/js/buscadorTipologia.js"></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     {%include 'footer.html.twig' %}  

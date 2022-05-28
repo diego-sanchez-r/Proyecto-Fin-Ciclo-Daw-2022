@@ -1,0 +1,100 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 28-may-2022, 17:56:03
+    Author     : Diego_Sanchez
+*/
+
+.form_buscador{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: #929FBA;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+#myInput{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+    color: white;
+}
+
+.fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+.form_buscador:hover,
+.form_buscador:valid{
+    width: 200px;
+    cursor: pointer;
+}
+
+.form_buscador:hover #myInput,
+.form_buscador:valid #myInput{
+    display: block;
+    background: #929FBA;
+}
+
+.form_buscador:hover .fa,
+.form_buscador:valid .fa{
+    background: #929FBA;
+}
+
+
+.enlace {
+  display: none;
+  position: absolute;
+  top: 50px;
+  bottom:0;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  color: #929FBA;
+  text-align: center; 
+  width: 100%;
+}
+
+.form_buscador:valid .enlace {
+  display: block;
+}
+
+.filtros{
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #DEE1E8;
+}
+
+.select_filtro{
+     background-color: #929FBA;
+     color: white;
+}
