@@ -191,9 +191,7 @@ header .textos-header{
     color: #fff;
 }
 
-.imagen-port2:hover .hover-galeria2{
-    transform: scale(1);
-}
+
 
 
 @media screen and (max-width:1000px){
