@@ -191,6 +191,9 @@ header .textos-header{
     color: #fff;
 }
 
+.imagen-port2:hover .hover-galeria2{
+    transform: scale(1);
+}
 
 
 
@@ -200,6 +203,10 @@ header .textos-header{
         height: 100px;
         margin-top: 0px;
         margin-left: -20px;
+    }
+    nav{
+        text-align: center;
+        padding: 30px 0 0 0;
     }
 }
 @media screen and (max-width:900px){
@@ -216,6 +223,10 @@ header .textos-header{
     #capa-mapa{
     width:600px;
     height:400px;
+    }
+    nav{
+        text-align: center;
+        padding: 30px 0 0 0;
     }
 }
 @media screen and (max-width:800px){
