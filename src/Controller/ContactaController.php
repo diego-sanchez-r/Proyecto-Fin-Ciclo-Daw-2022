@@ -14,6 +14,10 @@ class ContactaController extends AbstractController
     #[Route('/contacta', name: 'app_contacta')]
     public function index(): Response
     {
+        //Comprobar si el usuario esta logeado.
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
         return $this->render('contacta/index.html.twig', [
             'controller_name' => 'ContactaController',
         ]);

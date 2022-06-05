@@ -22,6 +22,10 @@ class LoginController extends AbstractController
     
      #[Route('/inicio', name: 'inicio')]
     public function indexInicio(): Response {
+        //Comprobar si el usuario esta logeado.
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
         return $this->render('index.html.twig');
     }
 }

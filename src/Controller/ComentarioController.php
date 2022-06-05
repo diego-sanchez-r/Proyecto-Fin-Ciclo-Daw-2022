@@ -17,6 +17,10 @@ class ComentarioController extends AbstractController
     #[Route('/comentario', name: 'app_comentario')]
     public function index(): Response
     {
+        //Comprobar si el usuario esta logeado.
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
         return $this->render('comentario/index.html.twig', [
             'controller_name' => 'ComentarioController',
         ]);

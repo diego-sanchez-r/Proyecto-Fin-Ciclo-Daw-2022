@@ -22,7 +22,10 @@ class NoticiaController extends AbstractController
     #[Route('/noticia', name: 'app_noticia')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        
+        //Comprobar si el usuario esta logeado.
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
         $repositorio = $doctrine->getRepository(Noticias::class);
         $noticias = $repositorio->findBy(
            [],
@@ -56,6 +59,10 @@ class NoticiaController extends AbstractController
      * @Route("/noticia/nueva", name="add_noticia")
      */
     public function insertar(Request $request, ManagerRegistry $doctrine,SluggerInterface $slugger): Response {
+        //Comprobar si el usuario esta logeado.
+        if($this->getUser() === null){
+            return $this->redirectToRoute("login");
+        }
         $repositorio = $doctrine->getRepository(Noticias::class);
         $noticias = $repositorio->findBy(
            [],
