@@ -1,18 +1,19 @@
 {# empty Twig template #}
 <link rel="stylesheet" href="/css/style_Filtros.css" />
 <div class="filtros">
+<b><i class="fa-solid fa-filter"> </i> Filtro</b>
 <form class="form_buscador">
-    <a class="enlace" href="javascript:void(0)" id="clear-btn">Borrar</a>
-    <input type="search" id="myInput" onkeyup="myFunction()" required><i class="fa fa-search" style="color:white"></i>
-</form><br>   
-<b>Filtro</b>
- <div class="input-group">
-<select class="form-select form-select-sm select_filtro" id="mySelect" onchange="myFunctionEstado()">
+    <input type="search" id="myInput" onkeyup="myFunction();" required><i class="fa fa-search" style="color:white"></i>
+</form>   
+<div class="input-group">
+<select class="form-select form-select-sm select_filtro text-center fw-bold" id="mySelect" onchange="myFunctionEstado();">
+    <option value="" selected>--Todos los Estados--</option> 
     <option value="Iniciada" class="bg-warning">Iniciada</option>
     <option value="En proceso" class="bg-danger">En proceso</option>
     <option value="Resuelto" class="bg-success">Resuelto</option>
 </select>
-<select class="form-select form-select-sm select_filtro" id="mySelect2" onchange="myFunctionTipo()">
+<select class="form-select form-select-sm select_filtro text-center fw-bold" id="mySelect2" onchange="myFunctionTipo();">
+    <option value="" selected>--Todos los Tipos--</option> 
     <option value="1">Electrica </option>    
     <option value="2">Gas</option>    
     <option value="3">Agua</option>    
@@ -31,12 +32,13 @@
 </select>
  </div>
       <br>
-    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExampleFiltro" role="button" aria-expanded="false" aria-controls="collapseExampleFiltro">
-        Info <i class="fa-solid fa-circle-info"></i>  
+    <a class="btn btn-primary" title="Información" data-bs-toggle="collapse" href="#collapseExampleFiltro" role="button" aria-expanded="false" aria-controls="collapseExampleFiltro">
+        <i class="fa-solid fa-circle-info"></i> Info 
     </a>
       <br>  
     <div class="collapse" id="collapseExampleFiltro">
-        <div class="card card-body"> 
+        <br>
+        <div class="card card-body" style="background-color: #DEE1E8"> 
             <div><b>Estado</b><br><i class="fa-solid fa-square" style="color:yellow;"></i> Iniciada <i class="fa-solid fa-square" style="color:red"></i> En proceso <i class="fa-solid fa-square" style="color: green;"></i> Resuelto</div>
  <div><b>Tipología</b></br>
     <div class="badge badge-danger px-3 rounded-pill bg-warning">
@@ -87,7 +89,6 @@
  </div>
         </div>
     </div>
- <br>
  </div>
 
 
