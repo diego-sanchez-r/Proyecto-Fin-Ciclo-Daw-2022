@@ -6,32 +6,36 @@
     {%include 'menu.html.twig' %}
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>.
     <h2 class="titulo">Ayuda Usuario</h2>
     <img src="/imagenes/img_ayuda_usuario/2.png"/><br><br>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      Navegar Página
-    </button>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-      Ver Incidencias Zona
-    </button>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
-      Nueva Incidencia
-    </button>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">
-        Marcadores Mapa
-    </button>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample5" aria-expanded="false" aria-controls="collapseExample4">
-        Noticias y Alertas
-    </button>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample6" aria-expanded="false" aria-controls="collapseExample4">
-        Grafica y Analisis
-    </button>
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample7" aria-expanded="false" aria-controls="collapseExample4">
-        Contacta con Nosotros
-    </button>
-    <br><br>
-     <main class="flex-shrink-0">
+    <div class="row">
+  <div class="col-3 m-2">
+    <div class="btn-group list-group" role="group" id="list-tab" role="tablist">
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <label class="btn btn-outline-primary" for="btncheck1">Navegar Página</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+        <label class="btn btn-outline-primary" for="btncheck2">Ver Incidencias Zona</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+        <label class="btn btn-outline-primary" for="btncheck3">Nueva Incidencia</label>
+        
+        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">
+        <label class="btn btn-outline-primary" for="btncheck4">Marcadores Mapa</label>
+        
+        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" data-bs-toggle="collapse" data-bs-target="#collapseExample5" aria-expanded="false" aria-controls="collapseExample5">
+        <label class="btn btn-outline-primary" for="btncheck5">Noticias y Alertas</label>
+        
+        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" data-bs-toggle="collapse" data-bs-target="#collapseExample6" aria-expanded="false" aria-controls="collapseExample6">
+        <label class="btn btn-outline-primary" for="btncheck6">Grafica y Analisis</label>
+        
+        <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off" data-bs-toggle="collapse" data-bs-target="#collapseExample7" aria-expanded="false" aria-controls="collapseExample7">
+        <label class="btn btn-outline-primary" for="btncheck7">Contacta con Nosotros</label>
+    </div>  
+  </div>
+  <div class="col-8">
+      <main class="flex-shrink-0">
         <div class="collapse" id="collapseExample">
         <!-- Navegar Página Web-->
         <section class="py-3 bg-light" id="scroll-target">
@@ -666,6 +670,9 @@
         </div>    
             
     </main>
+  </div>
+</div>
+    <br><br>
         <br><br><br><br><br><br>
         
     {%include 'footer.html.twig' %} 
